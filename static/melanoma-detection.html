@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skin Cancer Detection</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url('images/background.jpg'); /* Background image */
+            background-size: cover;
+            background-position: center;
+        }
+
+        .container {
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.8); /* Background color with transparency */
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+
+        }
+
+        p {
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        label {
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            display: inline-block;
+        }
+
+        label:hover{
+            background-color: #45a049;
+        }
+
+        label:hover:active {
+            background-color: #45a049;
+            transform: rotateX(25deg);
+            transform-origin: center bottom;
+            transition: 0s;
+        }
+
+        button {
+            background-color: #3498db;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        button:hover:active {
+            background-color: #2980b9;
+            transform: rotateX(25deg);
+            transform-origin: center bottom;
+            transition: 0s;
+        }
+
+        #results-panel {
+            display: none;
+            margin-top: 30px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        #resultText {
+            color: #333;
+        }
+
+        #selectedFileContainer {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        #selectedFileName {
+            margin-right: 10px;
+        }
+
+        #selectedImage {
+            display: none;
+            width: 64px;
+            height: 64px;
+        }
+
+        .move_ani{
+            animation: by 4s infinite alternate;
+        }
+
+        .jump_ani {
+            animation: jump 5s ease infinite alternate;
+            display: inline-block;
+            margin: 10px;
+        }
+
+        .drop_ani {
+            animation: drop-in 5.5s both infinite alternate;
+
+        }
+        @keyframes jump {
+            0% { transform: translateY(0); }
+            25% { transform: translateY(-10px); color: red;}
+            50% { transform: translateY(0px); color: blue;}
+            75% { transform: translateY(-10px); color: purple;}
+            100% { transform: translateY(0px); color: green;}
+        }
+
+        @keyframes by {
+            0% { transform: translate(0px, 0px); }
+            50% { transform: translate(30px, 0px); }
+            100% { transform: translate(20px, 0px); }
+        }
+
+        @keyframes drop-in {
+        0% { transform: translateY(-400px); animation-timing-function: ease-in; filter: blur(40px); opacity: 0; }
+        38% { transform: translateY(0); animation-timing-function: ease-out; filter: blur(0); opacity: 1; }
+        55% { transform: translateY(-16px); animation-timing-function: ease-in; }
+        72% { transform: translateY(0); animation-timing-function: ease-out; }
+        81% { transform: translateY(-7px); animation-timing-function: ease-in; }
+        90% { transform: translateY(0); animation-timing-function: ease-out; }
+        95% { transform: translateY(-2px); animation-timing-function: ease-in; }
+        100% { transform: translateY(0); animation-timing-function: ease-out; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="move_ani">🔎 Melanoma Detection 🔎</h1>
+        <p class="jump_ani" >🙌 Welcome to our Melanoma detection tool 🙌</p>
+        <p class="drop_ani" >Upload a photo for analysis.</p>
+        <label for="photoInput">Choose a Photo</label>
+        <input type="file" id="photoInput" accept="image/*" onchange="handleFileSelect()">
+        <p id="selectedFileName">Selected File: None</p>
+        <img id="selectedImage" src="" alt="Selected Image" width="32" height="32">
+        <p></p>
+        <button onclick="analyzePhoto()">Analyse Photo</button>
+
+        <div id="results-panel">
+            <h2>Analysis Results</h2>
+            <p id="resultText">Results will be displayed here.</p>
+        </div>
+    </div>
+
+    <script>
+        function handleFileSelect() {
+            var fileInput = document.getElementById('photoInput');
+            var selectedFile = fileInput.files[0];
+            var selectedFileNameElement = document.getElementById('selectedFileName');
+            var selectedImageElement = document.getElementById('selectedImage');
+
+            if (selectedFile) {
+                // Display the selected file name
+                selectedFileNameElement.textContent = 'Selected File: ' + selectedFile.name;
+
+                // Display the selected image
+                selectedImageElement.src = URL.createObjectURL(selectedFile);
+                selectedImageElement.style.display = 'inline';
+            } else {
+                // If no file is selected, display a default message and hide the image
+                selectedFileNameElement.textContent = 'Selected File: None';
+                selectedImageElement.src = '';
+                selectedImageElement.style.display = 'none';
+            }
+        }
+        // For demonstration purposes, a sample result is shown
+        function analyzePhoto() {
+            var resultPanel = document.getElementById('results-panel');
+            var resultText = document.getElementById('resultText');
+            var fileInput = document.getElementById('photoInput');
+            
+            if (fileInput.files.length > 0) {
+                var selectedFile = fileInput.files[0];
+                var allowedExtensions = ['.jpg', '.jpeg', '.png', '.gif'];
+                var fileExtension = selectedFile.name.split('.').pop().toLowerCase();
+
+                if (allowedExtensions.includes('.' + fileExtension)) {
+                    resultText.textContent = 'Analysis Result: Suspicious. Consult a dermatologist for further evaluation.';
+                } else {
+                    resultText.textContent = 'Error!!! Please upload a photo to analyse.';
+                }
+            } else {
+                resultText.textContent = 'Error!!! Please upload a photo to analyse.';
+            }
+
+            resultPanel.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
