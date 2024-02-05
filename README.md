@@ -4,7 +4,7 @@
 
 ## Overview
 
-Welcome to the exciting culmination of our journey in the Monash University Data Analytics Bootcamp! In Project 4, Group 2—comprising Nicholas, Sohaila, Abdi, and Duc—proudly presents an innovative venture at the intersection of data analytics and healthcare.
+Welcome to the exciting culmination of our journey in the Monash University Data Analytics Bootcamp! In Project 4, Group 2 — comprising Nicholas, Sohaila, Abdi, and Duc — proudly presents an innovative venture at the intersection of data analytics and healthcare.
 
 ## Project Objective
 
