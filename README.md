@@ -16,10 +16,10 @@ Users can simply upload a photo to our dedicated website, where a state-of-the-a
 
 Let's get acquainted with the brilliant minds behind this project:
 
-- **Nicholas**: *Bringing expertise in [relevant skill or background].*
-- **Sohaila**: *Contributing with proficiency in [relevant skill or background].*
-- **Abdi**: *Offering insights and skills in [relevant skill or background].*
-- **Duc**: *Providing valuable contributions through [relevant skill or background].*
+- **Nicholas**: *Bringing expertise in Model training & Image preprocessing*
+- **Sohaila**: *Contributing with proficiency in Colecting data & Model training*
+- **Abdi**: *Offering insights and skills in Image preprocessing & Frontend application*
+- **Duc**: *Providing valuable contributions through API & Front-end application*
 
 ## Join Us on this Journey
 
