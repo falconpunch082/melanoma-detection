@@ -164,16 +164,21 @@
 </head>
 <body>
     <div class="container">
+        <!-- Header -->
         <h1 class="move_ani">🔎 Skin Cancer Detection 🔎</h1>
+        <!-- Sub header -->
         <p class="jump_ani" >🙌 Welcome to our Skin Cancer detection tool 🙌</p>
+        <!-- Upload promp -->
         <p class="drop_ani" >Upload a photo for analysis.</p>
+        <!-- Upload button -->
         <label for="photoInput">Choose a Photo</label>
         <input type="file" id="photoInput" accept="image/*" onchange="handleFileSelect()">
         <p id="selectedFileName">Selected File: None</p>
         <img id="selectedImage" src="" alt="Selected Image" width="32" height="32">
         <p></p>
+        <!-- Run analysis button-->
         <button onclick="analyzePhoto()">Analyse Photo</button>
-
+        <!-- Show results panel -->
         <div id="results-panel">
             <h2>Analysis Results</h2>
             <p id="resultText">Results will be displayed here.</p>
