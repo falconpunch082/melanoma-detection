@@ -7,7 +7,6 @@
     <link rel="icon" type="image/png" href="images/icon.ico">
     <style>
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
             display: flex;
@@ -17,14 +16,7 @@
             background-image: url('images/background.jpg'); /* Background image */
             background-size: cover;
             background-position: center;
-        }
-
-        .container {
-            text-align: center;
-            background-color: rgba(255, 255, 255, 0.8); /* Background color with transparency */
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            font-family: 'Cooper Black' /*font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;*/
         }
 
         h1 {
@@ -72,8 +64,8 @@
             font-weight: bold;
             border-radius: 5px;
             cursor: pointer;
-            font-size: 16px;
             transition: background-color 0.3s;
+            font-family: 'Cooper Black' 
         }
 
         button:hover {
@@ -87,19 +79,16 @@
             transition: 0s;
         }
 
-        #results-panel {
-            display: none;
-            margin-top: 30px;
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            background-color: #f9f9f9;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
         h2 {
             color: #555;
             margin-bottom: 15px;
+        }
+
+        #ourStory {
+            cursor: pointer;
+            text-decoration: underline;
+            color: rgba(21,183,136,1);
+            ;
         }
 
         #resultText {
@@ -120,6 +109,34 @@
             display: none;
             width: 64px;
             height: 64px;
+        }
+
+        #results-panel {
+            display: none;
+            margin-top: 30px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .our-story {
+            display: none;
+            transition: display 0.5s ease;
+        }
+
+        .show-story {
+            display: block;
+            animation: drop-in 5.5s both;
+        }
+
+        .container {
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.8); /* Background color with transparency */
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
         }
 
         .move_ani{
@@ -163,6 +180,13 @@
     </style>
 </head>
 <body>
+    <!-- Our Story Button -->
+    <div>
+        <h1 id="ourStory" onclick="toggleStory()">Our Story</h1>
+        <p id="showStory" class="our-story">This is the story of our project...</p>
+    </div>
+
+
     <div class="container">
         <!-- Header -->
         <h1 class="move_ani">🔎 Skin Cancer Detection 🔎</h1>
@@ -227,6 +251,12 @@
             }
 
             resultPanel.style.display = 'block';
+        }
+
+        // Show/Hide OUr story
+        function toggleStory() {
+            var storySection = document.getElementById('showStory');
+            storySection.classList.toggle('show-story');
         }
     </script>
 </body>
