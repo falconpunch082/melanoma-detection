@@ -1,0 +1,18 @@
+	Welcome to "Skin Cancer Detection" our visionary project designed to empower end-users with a revolutionary tool 
+that seamlessly integrates the power of machine learning to elevate skin health awareness. 
+In collaboration with the esteemed Monash University, we have crafted a sophisticated solution dedicated to 
+detecting potential skin cancer through the meticulous analysis of skin spots captured in photographs.
+
+	In a world where technology meets healthcare, "Skin Guardian" stands as a beacon of progress, 
+offering a cutting-edge solution to enhance early detection and contribute to the fight against skin-related ailments. 
+Our mission is crystal clear: to provide a user-friendly platform that not only educates individuals about skin health 
+but also plays a crucial role in identifying potential health risks.
+
+	As we navigate the intricate landscape of data analytics, our project takes center stage, showcasing a blend 
+of technological prowess and a commitment to public health. "Skin Guardian" is more than just a tool; it's a 
+guardian angel for your skin. Leveraging advanced machine learning algorithms, it meticulously analyzes skin spots 
+in photographs, offering insights that go beyond the surface.
+
+	The journey through Project 4 has been marked by collaboration, dedication, and a shared passion for making a 
+meaningful impact. Each team member, with their unique skills and perspectives, contributed to the creation of a tool 
+that holds the potential to revolutionize how we approach skin health.
