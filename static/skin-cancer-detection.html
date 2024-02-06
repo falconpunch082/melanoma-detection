@@ -9,7 +9,8 @@
         body {
             margin: 0;
             padding: 0;
-            display: flex;
+            display: grid;
+            place-items: center;
             justify-content: center;
             align-items: center;
             height: 100vh;
@@ -123,15 +124,15 @@
 
         .our-story {
             display: none;
-            transition: display 0.5s ease;
+            color:aliceblue;
         }
 
         .show-story {
             display: block;
-            animation: drop-in 5.5s both;
+            animation: drop-in 3.5s both;
         }
 
-        .container {
+        .container { /* This container for the analysis */
             text-align: center;
             background-color: rgba(255, 255, 255, 0.8); /* Background color with transparency */
             padding: 30px;
@@ -181,7 +182,7 @@
 </head>
 <body>
     <!-- Our Story Button -->
-    <div>
+    <div >
         <h1 id="ourStory" onclick="toggleStory()">Our Story</h1>
         <p id="showStory" class="our-story">This is the story of our project...</p>
     </div>
