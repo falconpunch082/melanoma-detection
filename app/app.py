@@ -121,9 +121,9 @@ def predict():
         prediction_result = "Please upload a photo of your skin first!!!"
     else:
         if prediction_value==0:
-            prediction_result = "Analysis Result: No sign of cancer was detected."
+            prediction_result = 'Analysis Result: <span style="color: green;">No sign of cancer was detected.</span>'
         else:
-            prediction_result = 'Analysis Result: Suspicious. Consult a dermatologist.'
+            prediction_result = 'Analysis Result: <span style="color: red;">Suspicious. Consult a dermatologist.</span>'
 
     session['prediction'] = prediction_result
     session['display_results']='show'
