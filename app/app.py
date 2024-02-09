@@ -10,4 +10,19 @@ import pickle
 # Create app
 app=Flask(__name__)
 
-#Load model
+# Load model
+# model=pickle.load(open('models/model.pkl','rb'))
+
+##########################
+###         APP        ###
+##########################
+
+# Home page
+@app.route('/')
+def home_page():
+    return render_template('skin-cancer-detection.html')
+
+
+
+if __name__=="__main__":
+    app.run(debug=True)
