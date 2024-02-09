@@ -137,6 +137,7 @@
             border-radius: 8px;
             background-color: #f9f9f9;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: {{'block' if display_results=='show' else 'none'}}; /* Display results panel based on display_results variable*/
         }
 
         .section1{
@@ -223,11 +224,14 @@
         <img id="selectedImage" src="" alt="Selected Image" width="32" height="32">
         <p></p>
         <!-- Run analysis button-->
-        <button onclick="analyzePhoto()">Analyse Photo</button>
+        <form action="{{ url_for('predict') }}" method="post">
+            <button type="submit">Analyse Photo</button>
+        </form>
+       
         <!-- Show results panel -->
         <div id="results-panel">
             <h2>Analysis Results</h2>
-            <p id="resultText">Results will be displayed here.</p>
+            <p id="resultText">{{ prediction }}</p>
         </div>
     </div>
 

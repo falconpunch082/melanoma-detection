@@ -22,7 +22,11 @@ app=Flask(__name__)
 def home_page():
     return render_template('skin-cancer-detection.html')
 
-
+# Prediction page
+@app.route('/predict',methods=['POST'])
+def predict():
+    prediction_result = 'Analysis Result: Suspicious. Consult a dermatologist.'
+    return render_template('skin-cancer-detection.html', prediction=prediction_result, display_results='show')
 
 if __name__=="__main__":
     app.run(debug=True)
