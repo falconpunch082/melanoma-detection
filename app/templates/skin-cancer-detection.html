@@ -10,8 +10,9 @@
             margin: 0;
             padding: 0;
             display: grid;
+            grid-template-rows: auto 1fr;
             place-items: center;
-            justify-content: center;
+           
             align-items: center;
             height: 100vh;
             background-image: url('images/background.jpg'); /* Background image */
@@ -22,7 +23,7 @@
 
         h1 {
             color: #333;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
 
         }
 
@@ -86,10 +87,26 @@
         }
 
         #ourStory {
+            margin-left: 50px;
             cursor: pointer;
             text-decoration: underline;
             color: rgba(21,183,136,1);
-            ;
+        }
+
+        #ourStory:hover {
+            animation: jump 5s ease alternate;
+        }
+
+        #ourStory:hover:active {
+            transform: rotateX(25deg);
+            transform-origin: center bottom;
+            transition: 0s;
+        }
+
+        
+        #showStory {
+            margin-left: 60px;
+            
         }
 
         #resultText {
@@ -122,6 +139,11 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
+        .section1{
+            grid-row: 1; /* Assigns the first section to the first row */
+            justify-self: start;
+        }
+        
         .our-story {
             display: none;
             color:aliceblue;
@@ -182,11 +204,10 @@
 </head>
 <body>
     <!-- Our Story Button -->
-    <div >
+    <div class="section1">
         <h1 id="ourStory" onclick="toggleStory()">Our Story</h1>
         <p id="showStory" class="our-story">Our story begins with...</p>
     </div>
-
 
     <div class="container">
         <!-- Header -->
