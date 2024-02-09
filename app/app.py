@@ -7,6 +7,7 @@ import numpy as np
 from flask import Flask, request,render_template,session
 import os
 import pickle
+from helper import *
 
 # Create app
 app=Flask(__name__)
@@ -18,20 +19,21 @@ app.secret_key = 'proj4ct4Gr0up2'
 ###         APP        ###
 ##########################
 
+# Handle when upload photo
+UPLOAD_FOLDER = 'uploads'
+STATIC_FOLDER = 'static'
+# Ensure the uploads directory exists
+os.makedirs(STATIC_FOLDER, exist_ok=True)
+
+#Photo link
+uploads_dir = os.path.join(STATIC_FOLDER, UPLOAD_FOLDER)
+os.makedirs(uploads_dir, exist_ok=True)
+#Model link
+model_dir=os.path.join(STATIC_FOLDER,'models')
 
 # Home page
 @app.route('/',methods=['POST','GET'])
 def home_page():
-
-    # Handle when upload photo
-    UPLOAD_FOLDER = 'uploads'
-    STATIC_FOLDER = 'static'
-    # Ensure the uploads directory exists
-    os.makedirs(STATIC_FOLDER, exist_ok=True)
-
-    uploads_dir = os.path.join(STATIC_FOLDER, UPLOAD_FOLDER)
-    os.makedirs(uploads_dir, exist_ok=True)
-
     src_photo = ' '
     if not session.get('_cleared_once'):
         session.clear()
@@ -79,9 +81,7 @@ def home_page():
             if os.path.isfile(file_path):
                 os.remove(file_path)
 
-
     # Save the file to a location on the server
-
     file_name=file.filename
     session['file_name']=file_name
     file.save(os.path.join(uploads_dir, file.filename))
@@ -93,10 +93,38 @@ def home_page():
 @app.route('/predict',methods=['POST','GET'])
 def predict():
     raw_data = request.data
+    # Get the link file
+    if os.path.exists(uploads_dir):
+        # Get a list of all files in the directory
+        files = os.listdir(uploads_dir)
+        if len(files)>0:
+            img_path = os.path.join(uploads_dir, files[0])
+
+    # Check if there is a model exists
+    if os.path.exists(model_dir):
+        # Get a list of all files in the directory
+        files = os.listdir(model_dir)
+        if len(files)>0:
+            model_path = os.path.join(model_dir, files[0])
+            with open(model_path,'rb') as m:
+                model=pickle.load(m)
+            processed_img=prepro(img_path)
+            if processed_img is not None:
+                # Reshape the image for prediction
+                processed_image = np.expand_dims(processed_img, axis=0)
+                # Make predictions using the loaded model
+                predictions = model.predict(processed_image)
+                print(predictions[0, 0])
+                prediction_value = round(predictions[0, 0])
+
     if session['file_name']=='No file selected':
         prediction_result = "Please upload a photo of your skin first!!!"
     else:
-        prediction_result = 'Analysis Result: Suspicious. Consult a dermatologist.'
+        if prediction_value==0:
+            prediction_result = "Analysis Result: No sign of cancer was detected."
+        else:
+            prediction_result = 'Analysis Result: Suspicious. Consult a dermatologist.'
+
     session['prediction'] = prediction_result
     session['display_results']='show'
     return render_template('skin-cancer-detection.html', src_photo='',prediction=prediction_result, display_results='show')

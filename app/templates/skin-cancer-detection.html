@@ -224,7 +224,7 @@
         <img id="selectedImage" src="{{url_for('static',filename='uploads/'+src_photo)}}" alt="Selected Image" width="32" height="32">
         <p></p>
         <!-- Run analysis button-->
-        <button type="submit" onclick="submitForm()">Analyse Photo</button>
+        <button id="submitButton" type="submit" onclick="submitForm()">Analyse Photo</button>
        
         <!-- Show results panel -->
         <div id="results-panel">
@@ -289,6 +289,10 @@
         }
         //Submit form
         function submitForm() {
+            // Disable the button
+        var button = document.getElementById('submitButton');
+        button.disabled = true;
+
         var formData = new FormData();
         formData.append('text', 'aaaa');
         var xhr = new XMLHttpRequest();
@@ -296,14 +300,17 @@
         xhr.onload = function() {
             if (xhr.status === 200) {
                 console.log('Prediction request sent successfully');
+                button.disabled = false;
                 window.location.reload();
                 // Handle response from the server
             } else {
                 console.error('Error sending prediction request');
+                button.disabled = false;
                 // Handle error
             }
         };
         xhr.send(formData);
+        
         }
 
         // Show/Hide OUr story
