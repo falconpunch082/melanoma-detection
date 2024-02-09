@@ -124,7 +124,7 @@
         }
 
         #selectedImage {
-            display: none;
+            display: {{'inline' if file_name!='No file selected' else 'none'}};
             width: 64px;
             height: 64px;
         }
@@ -220,13 +220,11 @@
         <!-- Upload button -->
         <label for="photoInput">Choose a Photo</label>
         <input type="file" id="photoInput" accept="image/*" onchange="handleFileSelect()">
-        <p id="selectedFileName">Selected File: None</p>
-        <img id="selectedImage" src="" alt="Selected Image" width="32" height="32">
+        <p id="selectedFileName">Selected File: {{file_name}}</p>
+        <img id="selectedImage" src="{{url_for('static',filename='uploads/'+src_photo)}}" alt="Selected Image" width="32" height="32">
         <p></p>
         <!-- Run analysis button-->
-        <form action="{{ url_for('predict') }}" method="post">
-            <button type="submit">Analyse Photo</button>
-        </form>
+        <button type="submit" onclick="submitForm()">Analyse Photo</button>
        
         <!-- Show results panel -->
         <div id="results-panel">
@@ -243,40 +241,69 @@
             var selectedImageElement = document.getElementById('selectedImage');
 
             if (selectedFile) {
-                // Display the selected file name
-                selectedFileNameElement.textContent = 'Selected File: ' + selectedFile.name;
+
 
                 // Display the selected image
                 selectedImageElement.src = URL.createObjectURL(selectedFile);
                 selectedImageElement.style.display = 'inline';
+
+                // Send the selected file to Flask route
+                var formData = new FormData();
+                formData.append('file', 'aaa');
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', '/reset', true);
+                xhr.onload = function() {
+                    if (xhr.status === 200) {
+                        console.log('Memory reset successfully');
+                        // Proceed with file upload after memory reset
+                        var formData1 = new FormData();
+                        // Append file data to formData
+                        formData1.append('file', selectedFile );
+                        var uploadXhr = new XMLHttpRequest();
+                        uploadXhr.open('POST', '/', true);
+                        uploadXhr.onload = function() {
+                            if (uploadXhr.status === 200) {
+                                console.log('File uploaded successfully');
+                                window.location.reload();
+                                // Handle response from the Flask route
+                            } else {
+                                console.error('Error uploading file');
+                                // Handle error
+                            }
+                        };
+                        uploadXhr.send(formData1);
+                    } else {
+                        console.error('Error resetting memory');
+                        // Handle error
+                    }
+                };
+                xhr.send(formData);
+
             } else {
                 // If no file is selected, display a default message and hide the image
                 selectedFileNameElement.textContent = 'Selected File: None';
                 selectedImageElement.src = '';
                 selectedImageElement.style.display = 'none';
             }
+
         }
-        // For demonstration purposes, a sample result is shown
-        function analyzePhoto() {
-            var resultPanel = document.getElementById('results-panel');
-            var resultText = document.getElementById('resultText');
-            var fileInput = document.getElementById('photoInput');
-            
-            if (fileInput.files.length > 0) {
-                var selectedFile = fileInput.files[0];
-                var allowedExtensions = ['.jpg', '.jpeg', '.png', '.gif'];
-                var fileExtension = selectedFile.name.split('.').pop().toLowerCase();
-
-                if (allowedExtensions.includes('.' + fileExtension)) {
-                    resultText.textContent = 'Analysis Result: Suspicious. Consult a dermatologist for further evaluation.';
-                } else {
-                    resultText.textContent = 'Error!!! Please upload a photo to analyse.';
-                }
+        //Submit form
+        function submitForm() {
+        var formData = new FormData();
+        formData.append('text', 'aaaa');
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '/predict', true);
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                console.log('Prediction request sent successfully');
+                window.location.reload();
+                // Handle response from the server
             } else {
-                resultText.textContent = 'Error!!! Please upload a photo to analyse.';
+                console.error('Error sending prediction request');
+                // Handle error
             }
-
-            resultPanel.style.display = 'block';
+        };
+        xhr.send(formData);
         }
 
         // Show/Hide OUr story
