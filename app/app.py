@@ -105,7 +105,7 @@ def predict():
         # Get a list of all files in the directory
         files = os.listdir(model_dir)
         if len(files)>0:
-            model_path = os.path.join(model_dir, files[0])
+            model_path = os.path.join(model_dir, files[1]) #files[0] is model 1 and files[1] is model 2
             with open(model_path,'rb') as m:
                 model=pickle.load(m)
             processed_img=prepro(img_path)
