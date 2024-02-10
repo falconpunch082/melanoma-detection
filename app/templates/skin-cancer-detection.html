@@ -12,7 +12,6 @@
             display: grid;
             grid-template-rows: auto 1fr;
             place-items: center;
-           
             align-items: center;
             height: 100vh;
             background-image: url('static/images/background.jpg'); /* Background image */
@@ -24,7 +23,6 @@
         h1 {
             color: #333;
             margin-bottom: 10px;
-
         }
 
         p {
@@ -87,8 +85,11 @@
         }
 
         #ourStory {
-            margin-left: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             cursor: pointer;
+            font-size: 40px;
             text-decoration: underline;
             color: rgba(21,183,136,1);
         }
@@ -103,11 +104,10 @@
             transition: 0s;
         }
 
-        
         #showStory {
-            margin-left: 60px;
-            
+            margin-left: 60px;     
         }
+        
         #story-container {
             width: 97%;
             text-align: justify;
@@ -147,7 +147,7 @@
 
         .section1{
             grid-row: 1; /* Assigns the first section to the first row */
-            justify-self: start;
+            /* if want to start on the left side    justify-self: start; */
         }
         
         .our-story {
@@ -162,7 +162,7 @@
 
         .container { /* This container for the analysis */
             text-align: center;
-            background-color: rgba(255, 255, 255, 0.8); /* Background color with transparency */
+            background-color: rgba(255, 255, 255, 0.6); /* Background color with transparency */
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
@@ -185,16 +185,8 @@
 
         .magnifyingglass {
             display: inline-block;
-            --rotation-deg: -{{range(50,120)|random}}deg;
-            --translate-deg: {{range(0, 10)|random}}px;
-            animation: search 7s infinite linear; /* Adjusted the total duration to 7s to include the 2s pause */
-        }
 
-        .magnifyingglass2 {
-            display: inline-block;
-            --rotation-deg: {{range(50,120)|random}}deg;
-            --translate-deg: {{range(0, 10)|random}}px;
-            animation: search 7s infinite linear; /* Adjusted the total duration to 7s to include the 2s pause */
+            animation: search infinite linear; /* Adjusted the total duration to 7s to include the 2s pause */
         }
 
         .hourglass {
@@ -202,6 +194,13 @@
             animation: flip 3s infinite linear; /* Adjusted the total duration to 3s to include the 2s pause */
             font-size: xx-large;
             display: none;
+        }
+        
+        .clapping {
+            font-size: large;
+            font-size: 30px;
+            display: inline-block;
+            animation: clap  ease-in-out infinite alternate;
         }
 
         @keyframes search {
@@ -218,6 +217,15 @@
                 transform: rotate(0deg) translateY(0);
             }
             
+        }
+
+        @keyframes clap {
+            0%, 100% {
+                transform: rotateY(0);
+            }
+            50% {
+                transform: rotateY(var(--rotation-degree));
+            }
         }
 
         @keyframes flip {
@@ -276,10 +284,17 @@
     <div class="container">
         <!-- Header -->
         <h1 class="move_ani">
-            <p class="magnifyingglass">🔎</p> Skin Cancer Detection <p class="magnifyingglass2">🔍</p>
+            <p class="magnifyingglass" 
+            style="animation-duration: {{ range(7, 10) | random }}s; --rotation-deg: -{{range(50,120)|random}}deg;--translate-deg: {{range(0, 10)|random}}px;">🔎</p> 
+            Skin Cancer Detection             
+            <p class="magnifyingglass" 
+            style="animation-duration: {{ range(7, 10) | random }}s; --rotation-deg: {{range(50,120)|random}}deg;--translate-deg: {{range(0, 10)|random}}px;">🔍</p>
         </h1>
         <!-- Sub header -->
-        <p class="jump_ani" >🙌 Welcome to our Skin Cancer detection tool 🙌</p>
+        <p class="jump_ani" >
+            <span class="clapping" style="animation-duration: {{ range(1, 6) | random }}s; --rotation-degree: {{ range(50, 90) | random }}deg;">🙌</span>
+            Welcome to our Skin Cancer detection tool 
+            <span class="clapping" style="animation-duration: {{ range(1, 6) | random }}s; --rotation-degree: {{ range(50, 90) | random }}deg;">🙌</span></p>
         <!-- Upload promp -->
         <p>Upload a photo for analysis.</p>
         <!-- Upload button -->
