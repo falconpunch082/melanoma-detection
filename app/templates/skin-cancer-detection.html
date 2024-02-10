@@ -199,7 +199,7 @@
 
         .hourglass {
             position: relative;
-            animation: flip 7s infinite linear; /* Adjusted the total duration to 7s to include the 2s pause */
+            animation: flip 3s infinite linear; /* Adjusted the total duration to 3s to include the 2s pause */
             font-size: xx-large;
             display: none;
         }
@@ -258,6 +258,11 @@
         90% { transform: translateY(0); animation-timing-function: ease-out; }
         95% { transform: translateY(-2px); animation-timing-function: ease-in; }
         100% { transform: translateY(0); animation-timing-function: ease-out; }
+        }
+
+        @keyframes drop-out {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(100px); opacity: 0; }
         }
     </style>
 </head>
