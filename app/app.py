@@ -35,6 +35,7 @@ model_dir=os.path.join(STATIC_FOLDER,'models')
 @app.route('/',methods=['POST','GET'])
 def home_page():
     src_photo = ' '
+    # Check if there is any memory in Flask
     if not session.get('_cleared_once'):
         session.clear()
         session['_cleared_once'] = True
@@ -54,6 +55,7 @@ def home_page():
             if os.path.exists(previous_filepath):
                 src_photo = previous_filename
 
+    # Check if the user upload a file
     if 'file' not in request.files:
         if session['file_name']!='No file selected':
             return render_template('skin-cancer-detection.html',src_photo=src_photo,
@@ -64,7 +66,7 @@ def home_page():
                                    file_name=file_name,prediction=prediction_result,display_results='none')
 
     file = request.files['file']
-
+    #Check if the file is empty
     if file.filename == '':
         file_name = session.get('file_name', 'No prediction available')
         return render_template('skin-cancer-detection.html',src_photo=src_photo,
@@ -92,7 +94,7 @@ def home_page():
 # Prediction page
 @app.route('/predict',methods=['POST','GET'])
 def predict():
-    raw_data = request.data
+    raw_data = request.data #For hadnling post request otherwise it will not work
     # Get the link file
     if os.path.exists(uploads_dir):
         # Get a list of all files in the directory
@@ -114,8 +116,8 @@ def predict():
                 processed_image = np.expand_dims(processed_img, axis=0)
                 # Make predictions using the loaded model
                 predictions = model.predict(processed_image)
-                print(predictions[0, 0])
-                prediction_value = round(predictions[0, 0])
+                print(predictions)
+                prediction_value = round(predictions[0][0])
 
     if session['file_name']=='No file selected':
         prediction_result = "Please upload a photo of your skin first!!!"
@@ -129,6 +131,7 @@ def predict():
     session['display_results']='show'
     return render_template('skin-cancer-detection.html', src_photo='',prediction=prediction_result, display_results='show')
 
+#Clear Flask memory
 @app.route('/reset',methods=['POST','GET'])
 def reset():
     raw_data = request.data

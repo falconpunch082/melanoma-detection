@@ -108,6 +108,11 @@
             margin-left: 60px;
             
         }
+        #story-container {
+            width: 97%;
+            text-align: justify;
+        }
+
 
         #resultText {
             color: #333;
@@ -177,6 +182,59 @@
             animation: drop-in 5.5s both infinite alternate;
 
         }
+
+        .magnifyingglass {
+            display: inline-block;
+            --rotation-deg: -{{range(50,120)|random}}deg;
+            --translate-deg: {{range(0, 10)|random}}px;
+            animation: search 7s infinite linear; /* Adjusted the total duration to 7s to include the 2s pause */
+        }
+
+        .magnifyingglass2 {
+            display: inline-block;
+            --rotation-deg: {{range(50,120)|random}}deg;
+            --translate-deg: {{range(0, 10)|random}}px;
+            animation: search 7s infinite linear; /* Adjusted the total duration to 7s to include the 2s pause */
+        }
+
+        .hourglass {
+            position: relative;
+            animation: flip 7s infinite linear; /* Adjusted the total duration to 7s to include the 2s pause */
+            font-size: xx-large;
+            display: none;
+        }
+
+        @keyframes search {
+            0%, 100% { 
+                transform: rotate(0deg) translateY(0);
+            }
+            25% { 
+                transform: rotate(var(--rotation-deg)) translateY(var(--translate-deg));
+            }
+            50% { 
+                transform: rotate(var(--rotation-deg)) translateY(var(--translate-deg));
+            }
+            75% { 
+                transform: rotate(0deg) translateY(0);
+            }
+            
+        }
+
+        @keyframes flip {
+            0%, 100% {
+                transform: rotate(0deg);translateY(0);
+            }
+            25% {
+                transform: rotate(180deg); /* Rotate to 180 degrees at 25% of the animation duration */
+            }
+            50% {
+                transform: rotate(180deg); /* Hold the rotation at 180 degrees until 75% of the animation duration */
+            }
+            75% {
+                transform: rotate(0deg);translateY(0); /* Rotate back to 0 degrees at 75% of the animation duration */
+            }
+        }
+
         @keyframes jump {
             0% { transform: translateY(0); }
             25% { transform: translateY(-10px); color: red;}
@@ -212,20 +270,23 @@
 
     <div class="container">
         <!-- Header -->
-        <h1 class="move_ani">🔎 Skin Cancer Detection 🔎</h1>
+        <h1 class="move_ani">
+            <p class="magnifyingglass">🔎</p> Skin Cancer Detection <p class="magnifyingglass2">🔍</p>
+        </h1>
         <!-- Sub header -->
         <p class="jump_ani" >🙌 Welcome to our Skin Cancer detection tool 🙌</p>
         <!-- Upload promp -->
-        <p class="drop_ani" >Upload a photo for analysis.</p>
+        <p>Upload a photo for analysis.</p>
         <!-- Upload button -->
         <label for="photoInput">Choose a Photo</label>
-        <input type="file" id="photoInput" accept="image/*" onchange="handleFileSelect()">
+        <input type="file" id="photoInput" accept="image/jpeg, image/png" onchange="handleFileSelect()">
         <p id="selectedFileName">Selected File: {{file_name}}</p>
         <img id="selectedImage" src="{{url_for('static',filename='uploads/'+src_photo)}}" alt="Selected Image" width="32" height="32">
         <p></p>
         <!-- Run analysis button-->
         <button id="submitButton" type="submit" onclick="submitForm()">Analyse Photo</button>
-       
+        <!-- Waiting animation-->
+        <P id="hourglass" class="hourglass">⏳</P>
         <!-- Show results panel -->
         <div id="results-panel">
             <h2>Analysis Results</h2>
@@ -292,6 +353,9 @@
             // Disable the button
         var button = document.getElementById('submitButton');
         button.disabled = true;
+            //Show hourglass
+        var hourglass=document.getElementById('hourglass')
+        hourglass.style.display='block'
 
         var formData = new FormData();
         formData.append('text', 'aaaa');
@@ -317,6 +381,31 @@
         function toggleStory() {
             var storySection = document.getElementById('showStory');
             storySection.classList.toggle('show-story');
+
+            // Check if the toggle is on
+            if (storySection.classList.contains('show-story')) {
+                // Perform an AJAX request to fetch the story.html content
+                var xhr = new XMLHttpRequest();
+                xhr.open('GET', '/static/contents/our_story.html', true); // path to the story
+
+                xhr.onload = function () {
+                    if (xhr.status === 200) {
+                        // Insert the fetched content into the story container
+                        document.getElementById('showStory').innerHTML = xhr.responseText;
+                    } else {
+                        console.error('Failed to fetch story.html');
+                    }
+                };
+
+                xhr.onerror = function () {
+                    console.error('Failed to fetch story.html');
+                };
+
+                xhr.send();
+            } else {
+                // Toggle is off, remove the story content from the container
+                document.getElementById('showStory').innerHTML = '';
+            }
         }
     </script>
 </body>
