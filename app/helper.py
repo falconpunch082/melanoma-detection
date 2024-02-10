@@ -2,6 +2,7 @@ import cv2
 import numpy as np
 from skimage import color
 from skimage.filters import threshold_otsu
+from keras.models import load_model
 
 
 def prepro(img_path):
