@@ -32,6 +32,8 @@ Thank you for being part of this exciting venture!
 ### References
 
 Collection of data - https://www.kaggle.com/search?q=skin+cancer+in%3Adatasets
+Emoji - https://emojidb.org/
+Animation - https://community.home-assistant.io/t/mushroom-cards-build-a-beautiful-dashboard-easily/388590/3272
 
 # DRAFT
 # skin-cancer-detection
