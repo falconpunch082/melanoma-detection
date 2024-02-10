@@ -6,6 +6,11 @@
     <title>Skin Cancer Detection</title>
     <link rel="icon" type="image/png" href="static/images/icon.ico">
     <style>
+
+        /* =========== */
+        /* ATTRIBUTES */
+        /* ========= */
+
         body {
             margin: 0;
             padding: 0;
@@ -84,6 +89,10 @@
             margin-bottom: 15px;
         }
 
+        /* === */
+        /* ID */
+        /* = */
+        
         #ourStory {
             display: flex;
             justify-content: center;
@@ -145,6 +154,10 @@
             display: {{'block' if display_results=='show' else 'none'}}; /* Display results panel based on display_results variable*/
         }
 
+        /* ====== */
+        /* CLASS */
+        /* ==== */
+
         .section1{
             grid-row: 1; /* Assigns the first section to the first row */
             /* if want to start on the left side    justify-self: start; */
@@ -180,7 +193,6 @@
 
         .drop_ani {
             animation: drop-in 5.5s both infinite alternate;
-
         }
 
         .magnifyingglass {
@@ -201,6 +213,10 @@
             display: inline-block;
             animation: clap  ease-in-out infinite alternate;
         }
+
+        /* =================== */
+        /* ANIMATION KEY FRAME */
+        /* =================== */
 
         @keyframes search {
             0%, 100% { 
