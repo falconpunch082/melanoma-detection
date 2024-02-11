@@ -3,3 +3,12 @@
 *.jpeg
 *.png
 *.webp
+.ipynb_checkpoints/input-checkpoint.ipynb
+.ipynb_checkpoints/model_testing-checkpoint.ipynb
+.ipynb_checkpoints/model_testing2-checkpoint.ipynb
+.ipynb_checkpoints/production1-checkpoint.ipynb
+.ipynb_checkpoints/production2-checkpoint.ipynb
+.ipynb_checkpoints/production3-checkpoint.ipynb
+.ipynb_checkpoints/train_val_test_folder-prep-checkpoint.ipynb
+.ipynb_checkpoints/spark_breakdown-checkpoint.ipynb
+.ipynb_checkpoints/v1.1_further_testing-checkpoint.ipynb
