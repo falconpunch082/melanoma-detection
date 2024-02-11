@@ -53,9 +53,12 @@ def home_page():
             if os.path.exists(previous_filepath):
                 src_photo = previous_filename
 
+    if session.get('prediction'):
+        session.clear()
+
     # Check if the user upload a file
     if 'file' not in request.files:
-        if session['file_name']!='No file selected':
+        if file_name!='No file selected':
             return render_template('skin-cancer-detection.html',src_photo=src_photo,
                                    file_name=file_name,prediction=prediction_result, display_results=display_results)
         else:
@@ -141,4 +144,4 @@ def reset():
     return 'Data reset'
 
 if __name__=="__main__":
-    app.run(debug=True)
+    app.run(debug=False)
