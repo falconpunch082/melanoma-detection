@@ -209,7 +209,7 @@
         
         .clapping {
             font-size: large;
-            font-size: 30px;
+            font-size: 20px;
             display: inline-block;
             transform-style: preserve-3d;
             animation: clap  linear infinite alternate;
@@ -297,6 +297,7 @@
         <p id="showStory" class="our-story">Our story begins with...</p>
     </div>
 
+
     <div class="container">
         <!-- Header -->
         <h1 class="" style="margin:-20px;">
@@ -308,9 +309,9 @@
         </h1>
         <!-- Sub header -->
         <p class="" style="color:#12372A;margin-top: -35px;">
-            <span class="clapping jump_ani" style="animation-duration: {{ range(1, 6) | random }}s; --rotation-degree: {{ range(50, 90) | random }}deg;">🙌</span>
+            <span class="clapping jump_ani" style="animation-duration: {{ range(1,3) | random }}s; --rotation-degree: {{ range(50, 90) | random }}deg;">🙌</span>
             Welcome to our Skin Cancer detection tool 
-            <span class="clapping" style="animation-duration: {{ range(1, 6) | random }}s; --rotation-degree: {{ range(50, 90) | random }}deg;">🙌</span></p>
+            <span class="clapping" style="animation-duration: {{ range(1, 3) | random }}s; --rotation-degree: {{ range(50, 90) | random }}deg;">🙌</span></p>
         <!-- Upload promp -->
         <p>Upload a photo for analysis.</p>
         <!-- Upload button -->

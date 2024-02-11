@@ -8,9 +8,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/helper.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/helper.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/models/prod_1.pkl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/models/prod_2.pkl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/uploads/Screenshot 2024-02-09 224557.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/uploads/PXL_20240104_232914689.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/templates/skin-cancer-detection.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/skin-cancer-detection.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

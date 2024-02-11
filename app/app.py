@@ -3,10 +3,8 @@ Trained on the data set of skin images,
 which includes around 5000 skin cancer photos and 5000 healthy skin photos
 """
 
-import numpy as np
 from flask import Flask, request,render_template,session
 import os
-import pickle
 from helper import *
 
 # Create app
@@ -109,14 +107,15 @@ def predict():
         if len(files)>0:
             model_path = os.path.join(model_dir, files[0]) #files[0] is model 1 and files[1] is model 2
             #Using pickle to load model
-            with open(model_path,'rb') as m:
-                model=pickle.load(m)
+            # with open(model_path,'rb') as m:
+            #     model=pickle.load(m)
                 #Using tensorflow to load the model
-                # model = load_model(model_path)
+            model = load_model(model_path)
             processed_img=prepro(img_path)
             if processed_img is not None:
                 # Reshape the image for prediction
-                processed_image = np.expand_dims(processed_img, axis=0)
+                # processed_image = np.expand_dims(processed_img, axis=0)
+                processed_image = np.expand_dims(processed_img/255, 0)
                 # Make predictions using the loaded model
                 predictions = model.predict(processed_image)
                 print(predictions)
