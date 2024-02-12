@@ -1,4 +1,4 @@
-![Project Image](static/images/icon.png)
+![Project Image](app/static/images/icon.png)
 # SKIN CANCER DETECTION
 # Monash University Data Analytics Bootcamp Project 4
 
