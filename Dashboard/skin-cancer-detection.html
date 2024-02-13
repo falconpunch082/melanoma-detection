@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skin Cancer Detection</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.css" />
+    <!-- <link rel="icon" type="image/png" href="static/images/icon.ico">-->
+    <style>
+ 
+     /* IMP _ To put element on top of another*/ 
+    .overlayText {
+      position: absolute;
+      top: 75%;
+      left: 20%;
+      right: 20%;
+      z-index: 1;
+      text-align: center;
+    }
+
+     /* For Earth animation*/
+    .myBtn {
+      width: 300px;
+      font-size: 18px;
+      padding: 0px;
+      border: none;
+      background: whitesmoke;
+      color: black;
+      cursor: pointer;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 50px;
+      border-style: inset;
+      border-width: 10px;
+      border-color: rgb(233, 113, 15);
+    }
+
+    #myBtn:hover {
+      background: rgb(237, 129, 6);
+      color: black;
+    }
+  
+    /* IMP _For background*/
+    body {
+      background-image: url('B2.png');
+      -webkit-background-size: fill; 
+      -moz-background-size: fill;
+      -o-background-size: fill; 
+      height: 100%;
+      background-repeat: no-repeat;
+      background-position: center top;
+      width: 100%;
+      overflow:scroll;
+    }
+
+    /* For header*/
+    header {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      position: relative;
+    }
+  
+    /* IMP _For Video*/
+    video {
+      position: inherit;
+      width: 100%;
+      overflow: hidden;
+      z-index: -1;
+    }
+
+    /* headline*/
+    h1 {
+      color: linear-gradient(#ef6e04,  crimson);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 900%;
+      height: auto;
+      width: auto;
+      margin: auto;
+      margin-top: 40px;
+      margin-bottom: 10px;
+      display: flex;
+      position: relative;
+      justify-content: center;
+      background: -webkit-linear-gradient(#e4cc1b, #e4cc1b, #efa504, #efa504, rgb(243, 85, 11));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      z-index: 1;
+    }
+
+    /* IMP _For header info*/
+    h3  {
+      color:linear-gradient(rgb(241, 81, 12),  crimson);
+      margin-left: 10px;
+      padding-left: auto;
+      justify-content: center;
+      font-stretch: ultra-expanded;
+      font-size: 50px;
+      display: flex;
+      position: relative;
+      font-family: "Arial, Helvetica, sans-serif";
+      background: -webkit-linear-gradient(rgb(241, 81, 12),  #efa504);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      }
+ 
+    /* For subheadlines*/
+    h2  {
+      color: #f26710 ;
+      margin: auto;
+      padding: 15px 15px 15px 15px;       
+      margin-top: 10px;
+      margin-bottom: 50px;
+      text-align: left; 
+      font-size: 60px;
+      font-weight: 60;
+      background: -webkit-linear-gradient(#f0eabf, #f1e58e, #746d66);
+      font-family: "Arial, Helvetica, sans-serif";
+    }
+
+    h2.inset {
+      border-style: inset;
+      border-width: 8px;
+      border-color: rgb(241, 172, 12);
+      border-radius: 5px;
+      width:87%;
+      }
+
+    /* IMP _subsection info*/
+    h5  {
+      color:#f9c350;
+      margin-left: 20px;
+      margin-right: 20px;
+      padding-left: 100px;
+      padding-right: 100px;
+      justify-content: center;
+      font-stretch: ultra-expanded;
+      font-size: 40px;
+      display: flex;
+      position: relative;
+      font-family: "Arial, Helvetica, sans-serif";
+      }
+
+    .newspaper {
+      column-count: 2;
+      column-gap: 5%;
+      column-rule-style: solid;
+      justify-content: center;
+      column-rule-width: 5px;
+      margin-left: 100px;
+      column-rule-color:  rgb(241, 172, 12);
+    }
+
+    /* For dropdown label text*/
+    h7 {
+      background: rgb(236, 174, 123);
+      color: black;
+      margin: auto;
+      padding: 15px 15px 15px 15px;       
+      margin-top: 10px;
+      margin-bottom: 50px;
+      text-align: left;
+      font-size: 60px;
+      font-weight: 60;
+      text-decoration: line-through;
+      font-family: "Arial, Helvetica, sans-serif";
+      border-style: inset;
+      border-width: 8px;
+      border-color: rgb(220, 205, 170);
+      border-radius: 5px;
+      width:87%;
+    }
+    
+    /* For header info*/
+    h4 {
+      background: transparent;
+      color: white;
+      text-align: left;
+      font-size: 40px;
+      margin: 5px;
+      }
+     
+    /* For paragraph*/
+    p   {
+      color: whitesmoke;
+      margin: auto;
+      padding: 15px 15px 15px 15px;       
+      margin-top: 30px;
+      margin-bottom: 30px;
+      text-align: left;
+      font-size: 35px;
+      font-weight: 900;
+      font-stretch: ultra-expanded;
+      width:90%;
+     }
+    
+    /* For upper line*/
+    hr.n0  {
+      display: block;
+      border-style: inset;
+      border-width: 4px;
+      border-color:  #efa504;
+      margin-top: 50px;
+      margin-bottom: 10px;
+      width: 97%;
+    }
+
+    a:link, a:visited {
+       background-color:  #efa504;
+       color: black;
+       width:200px;
+       height:90px;
+       padding: 14px 25px;
+       text-align: center;
+       text-decoration: none;
+       display: inline-block;
+       border:inset;
+       font-size: 30px;
+    }
+
+    a:hover, a:active {
+        background-color: rgb(241, 81, 12);
+    }
+
+    /* IMP_For lower line*/
+    hr.n1  {
+      display: block;
+      border-style: inset;
+      border-width: 12px;
+      border-color:  rgb(241, 81, 12);
+      margin-top: 10px;
+      margin-bottom: 50px;
+      width: 97%;
+      background: -webkit-linear-gradient(rgb(241, 81, 12),  #efa504);
+    }
+
+    hr.n2  {
+      display: block;
+      border-style: inset;
+      border-width: 4px;
+      border-color: rgb(219, 25, 25);
+      width: 97%;
+    }
+
+    /* For Plot borders*/
+    .plot  {
+     border-style: inset;
+     border-width: 10px;
+     border-color: rgb(234, 142, 67);
+    }
+
+    /* For list in footers*/
+    ul {
+       background: transparent;
+       padding-left: 200px;
+    }
+    
+    ul li {
+       background: transparent;
+       color:#f9c350;
+       margin-right: 20px;
+       padding-right: 100px;
+       text-align: left;
+       font-size: 35px;
+    }
+
+    .wrapper {
+      position: relative;
+    }
+
+   /* For column*/
+    .column{
+      flex: 50%;
+      padding: 5px;
+    }
+
+   .row{
+    display: flex;
+    }
+
+    /* For dropdown lists*/
+   .dropbtn {
+      background-color: transparent;
+      color:  #ef0404;
+      padding: 10px;
+      font-size: 1px;
+      border: none;
+      cursor: pointer;
+      justify-content: center;
+    }
+
+   .dropbtn:hover, .dropbtn:focus {
+      background-color: rgb(189, 173, 238);
+      width: auto;
+      height: 130px;
+    }
+
+   .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+   .dropdown-content {
+      position: relative;
+      background-color: rgb(126, 106, 78); 
+      color: black;
+      overflow: auto;
+      font-size: 24px;
+      font-family: "Arial, Helvetica, sans-serif";
+      font-weight: bold;
+      width: 230px;
+      overflow: auto;
+      justify-content: center;
+      border-style: inset;
+      border-width: 3px;
+      border-color: rgb(237, 121, 5);
+      border-radius: 5px;
+      z-index: 1;
+    }
+
+    .dropdown-content a {
+      padding: 12px 16px;
+      text-decoration: none;
+    }
+
+    .dropdown a:hover {background-color: rgb(100, 77, 50);}
+
+    .show {display: block;}
+
+    ul{
+      list-style-image: linear-gradient(to left bottom, #efa504, #f0eabf);
+      color: orange;
+      font-size: 30px;
+    }
+
+    .row {
+      display: flex;
+    }
+
+    .col-1-3 {
+      float: left;
+      width: 50%;
+      padding-right: 200px;
+      padding-left: 200px;
+    }
+    .col-2-3 {
+      float: right;
+      width: 50%;
+      padding-right: 200px;
+      padding-left: 200px;
+    }
+
+    #selectedFileName {
+            margin-right: 10px;
+    }
+
+    #selectedImage {
+            display: {{'inline' if file_name!='No file selected' else 'none'}};
+            width: 100px;
+            height: 100px;
+            justify-content: center;
+            
+    }
+
+        .hourglass {
+            position: relative;
+            animation: flip 3s infinite linear;
+            font-size: xx-large;
+            display: none;
+        }
+
+        #results-panel {
+            display: none;
+            margin-top: 30px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: {{'block' if display_results=='show' else 'none'}}; /* Display results panel based on display_results variable*/
+        }
+
+        #resultText {
+            color: #333;
+        }
+
+    </style>
+</head>
+<body>
+  <!-- Header start-->
+  <header> 
+    <div>
+        <div class="video">
+            <video autoplay loop>
+               <source src="6.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="overlayText">
+            <h3>Welcome to a Skin Cancer detection dashboard</h3>
+        </div>
+    </div>
+  </header>
+  <!-- Header end-->
+
+  <div class="container">
+    <hr class="n1">
+
+    <h2 class="inset">1) What is Skin Cancer ? </h2>
+    
+    <h5>The excessive exposure to the ultraviolet (UV) radiation from the sun can damage the skin cells, leading to the development of skin cancer. There are three main types of skin cancer:</h5>
+    <ul>
+        <li>Basal cell carcinoma</li>
+        <li>Squamous cell carcinoma</li>
+        <li>Melanoma</li>
+    </ul>
+
+    <h5>Useful Links:</h5>
+    <a href="https://www.cancer.org.au/cancer-information/types-of-cancer/skin-cancer" target="_blank">Cancer Council</a>
+    <a href="https://www.skincancer.org/skin-cancer-information/" target="_blank">Skin Cancer Foundation</a>
+    <a href="https://www.betterhealth.vic.gov.au/health/conditionsandtreatments/skin-cancer" target="_blank">Better Health</a>
+    <a href="https://www.healthdirect.gov.au/skin-cancer-and-melanomas" target="_blank">Health Direct</a>
+    <a href="https://en.wikipedia.org/wiki/Skin_cancer" target="_blank">Wikipedia</a>
+
+    <hr class="n1">
+
+    <h2 class="inset">2) Symptoms and Causes </h2>
+
+    <h5>Knowing your skin and monitoring it for changes is key to observe symtoms of skin cancer. The follwing symtoms can be observed:</h5>
+    <ul>
+        <li>any crusty, non-healing sores</li>
+        <li>small lumps that are red, pale or pearly in colour</li>
+        <li>new spots, freckles or any moles changing in colour, thickness or shape over a period of weeks to months</li>
+    </ul>
+
+    <hr class="n1">
+
+    <h2 class="inset">3) Skin cancer diagnosis tool </h2>
+
+    <div class="container">
+        <!-- Upload promp -->
+        <h3>Upload a photo for analysis.</h3>
+        <!-- Upload button -->
+        <label for="photoInput">Choose a Photo</label>
+        <input type="file" id="photoInput" accept="image/jpeg, image/png" onchange="handleFileSelect()">
+        <p id="selectedFileName">Selected File: {{file_name}}</p>
+        <img id="selectedImage" src="{{url_for('static',filename='uploads/'+src_photo)}}" alt="Selected Image" width="32" height="32">
+        <p></p>
+        <!-- Run analysis button-->
+        <button id="submitButton" type="submit" onclick="submitForm()">Analyse Photo</button>
+        <!-- Waiting animation-->
+        <P id="hourglass" class="hourglass">⏳</P>
+        <!-- Show results panel -->
+        <div id="results-panel">
+            <h3>Analysis Results</h3>
+            <p id="resultText">{{ prediction | safe }}</p>
+        </div>
+    </div>
+
+    <hr class="n1">
+
+    <h2 class="inset">4) Treatments </h2>
+
+        <div class='row'>
+        <ul class='col-1-3'>
+            <li>Surgery</li>
+            <li>freezing</li>
+            <li>scraping</li>
+            <li>radiotherapy</li>
+        </ul>
+        
+        <ul class='col-2-3'>
+            <li>Removing lymph nodes</li>
+            <li>Immunotherapy</li>
+            <li>Targeted therapy</li>
+            <li>Chemotherapy</li>
+        </ul>
+        </div>
+
+    <hr class="n1">
+    
+    <div class='row'>
+        <ul class='col-1-3'>
+            <h3>Collaborators</h3>
+            <li>Sohaila</li>
+            <li>Nicholas</li>
+            <li>Duc Trieu Pham</li>
+            <li>Abhidnya</li>
+        </ul>
+        
+        <ul class='col-2-3'>
+            <img src="Logo1.png" alt="Paris" width="300" height="300">
+        </ul>
+    </div>
+    
+  </div>
+
+  <!-- Scripts here-->
+  <script src="../static/scripts/handle_upload_file.js"></script>
+</body>
+</html>
