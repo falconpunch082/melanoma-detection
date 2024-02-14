@@ -1,3 +1,5 @@
+# SPARK v1.15 by Nicholas Dale and Sohaila Nazari
+
 # To run this script, enter the following command to Git Bash
 # python input_preprocesssing.py (filepath/name of image)
 
@@ -17,12 +19,14 @@ raw = Image.open(sys.argv[1])
 '''
 Section 1: Translating image into array
 '''
-
-# Resize the image to a consistent size of 300x300
+# Resize the image to a consistent size (e.g., 224x224)
 img = raw.resize((300, 300))
 
 # Convert the image to a NumPy array
 img_array = np.array(img)
+
+# Create original image variable for comparison - this is not in image_preprocessing.py
+img_ori = img_array
 
 # Normalize pixel values
 img_array = cv2.normalize(img_array, None, 255, 0, cv2.NORM_MINMAX, cv2.CV_8U)
@@ -32,52 +36,54 @@ Section 2: Creating the mask to remove unnecessary features like healthy skin an
 Hair is first removed with the DullRazor algorithm, resulting in an image which is then used
 to create a mask highlighting the skinmark.
 '''
-
-# Converting RGB picture to greyscale for hair removal DullRazor algorithm
+# Converting RGB picture to greyscale for hair removal
 img_gc = color.rgb2gray(img_array)
 
-# DullRazor algorithm starts here
+# Enhance contrast
+img_gc = exposure.adjust_gamma(img_gc, gamma=2.5)
+
+#DullRazor algorithm starts here
 #Black hat filter
-kernel = cv2.getStructuringElement(1,(9,9)) 
+kernel = cv2.getStructuringElement(1,(5,5)) 
 blackhat = cv2.morphologyEx(img_gc, cv2.MORPH_BLACKHAT, kernel)
 
 #Gaussian filter
 bhg= cv2.GaussianBlur(blackhat,(3,3),cv2.BORDER_DEFAULT)
 
 #Masking hair
-ret, mask = cv2.threshold(bhg,0.03,255,cv2.THRESH_BINARY)
+ret, mask = cv2.threshold(bhg,0.02,255,cv2.THRESH_BINARY)
 
 # Normalise mask
 mask = cv2.normalize(mask, None, 255, 0, cv2.NORM_MINMAX, cv2.CV_8U)
 
-#Replace pixels of the mask
+#Replace pixels in img_array covered in mask to create image without hair
 dst = cv2.inpaint(img_array, mask, 6, cv2.INPAINT_TELEA)
-# DullRazor algorithm ends here
+#DullRazor algorithm ends here
 
+# Segmentation preparation
 # Adjusting exposure
-img_ex1 = exposure.adjust_log(dst)
+img_ex = exposure.adjust_log(dst)
 
-p2, p98 = np.percentile(img_ex1, (2, 98))
-img_ex2 = exposure.rescale_intensity(img_ex1, in_range=(p2, p98))
+# Apply gamma correction
+gamma = 1.5 # You can experiment with different gamma values
+img_gamma_corrected = exposure.adjust_gamma(img_ex, gamma=gamma)
 
 # Converting cleaned photo into greyscale for thresholding/segmentation
-img_gs2 = color.rgb2gray(img_ex2)
+img_gt = color.rgb2gray(img_gamma_corrected)
 
 # Global thresholding with Otsu
-thresh = threshold_otsu(img_gs2)
+thresh = threshold_otsu(img_gt)
 
 # Creating threshold image
-img_t = img_gs2 <= thresh
+img_t = img_gt <= thresh
 
 # Creating mask using threshold image
 # Value 0 as black and white photo used
 mask = np.where(img_t >= 0, img_t, 0)
 
 '''
-Section 3: Creating the final processed photo by only including parts of 
-img_array that is highlighted by the mask.
+Section 3: Creating the final processed photo by only including parts of img_array that is highlighted by the mask.
 '''
-
 # Nested for loop for each 'row' of img
 for h in range(mask.shape[0]):
     # For each 'column' of img

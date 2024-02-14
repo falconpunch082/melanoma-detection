@@ -3,9 +3,6 @@
 
 This repository contains material that is part of Project 4 of Monash University Boot Camps' Data Analytics Bootcamp made by Group 2 - [Nicholas Dale](https://github.com/falconpunch082), [Duc Trieu Pham](https://github.com/Lilydales), [Sohaila Nazari](https://github.com/S-haila) and [Abhidnya](https://github.com/Abhidnya05).
 
-
-
-
 ## Project Overview
 
 The purpose of this project is to create a website that hosts a convolutional neural network model that is purpose-built to detect whether a photo provided by an end-user shows signs of common skin cancers like melanoma, basal cell carcinoma or squamous cell carcinoma.
@@ -50,3 +47,9 @@ Pictures not showing skin cancers were handpicked from the following websites:
 -	https://www.kaggle.com/datasets/ahmedxc4/skin-ds 
 -	https://www.kaggle.com/datasets/ismailpromus/skin-diseases-image-dataset 
 -	https://www.kaggle.com/datasets/subirbiswas19/skin-disease-dataset 
+
+## Acknowledgements
+
+We would like to thank [Evan/EdjeElectronics](https://github.com/EdjeElectronics) for making their image data augmentation Python script open-source. It was thanks to them that we were able to create a suitable dataset for HOTARU to learn from. The Python script used is in the repo, but we recommend taking a look at their repo too (https://github.com/EdjeElectronics/Image-Augmentation-Examples-for-Machine-Learning/tree/master).
+
+We would also like to thank our lecturer Saaransh and teaching assistant Hamim for their guidance during this project.
