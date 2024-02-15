@@ -5,7 +5,6 @@
 
 # Importing relevant packages
 import sys
-import pandas as pd
 import numpy as np
 from PIL import Image
 import cv2
@@ -24,9 +23,6 @@ img = raw.resize((300, 300))
 
 # Convert the image to a NumPy array
 img_array = np.array(img)
-
-# Create original image variable for comparison - this is not in image_preprocessing.py
-img_ori = img_array
 
 # Normalize pixel values
 img_array = cv2.normalize(img_array, None, 255, 0, cv2.NORM_MINMAX, cv2.CV_8U)
