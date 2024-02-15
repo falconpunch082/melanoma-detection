@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skin Cancer Detection</title>
+    <link rel="icon" type="image/png" href="static/images/icon.ico">
+    <style>
+
+        /* =========== */
+        /* ATTRIBUTES */
+        /* ========= */
+
+        body {
+            margin: 0;
+            padding: 0;
+            display: grid;
+            grid-template-rows: auto 1fr;
+            place-items: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url('static/images/background.jpg'); /* Background image */
+            background-size: cover;
+            background-position: center;
+            font-family: 'Cooper Black' /*font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;*/
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        label {
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            display: inline-block;
+        }
+
+        label:hover{
+            background-color: #45a049;
+        }
+
+        label:hover:active {
+            background-color: #45a049;
+            transform: rotateX(25deg);
+            transform-origin: center bottom;
+            transition: 0s;
+        }
+
+        button {
+            background-color: #3498db;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-family: 'Cooper Black' 
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        button:hover:active {
+            background-color: #2980b9;
+            transform: rotateX(25deg);
+            transform-origin: center bottom;
+            transition: 0s;
+        }
+
+        h2 {
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        /* === */
+        /* ID */
+        /* = */
+        
+        #ourStory {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            font-size: 40px;
+            text-decoration: underline;
+            color: rgba(21,183,136,1);
+        }
+
+        #ourStory:hover {
+            animation: jump 5s ease alternate;
+        }
+
+        #ourStory:hover:active {
+            transform: rotateX(25deg);
+            transform-origin: center bottom;
+            transition: 0s;
+        }
+
+        #showStory {
+            margin-left: 60px;     
+        }
+        
+        #story-container {
+            width: 97%;
+            text-align: justify;
+        }
+
+
+        #resultText {
+            color: #333;
+        }
+
+        #selectedFileContainer {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        #selectedFileName {
+            margin-right: 10px;
+        }
+
+        #selectedImage {
+            display: {{'inline' if file_name!='No file selected' else 'none'}};
+            width: 64px;
+            height: 64px;
+        }
+
+        #results-panel {
+            display: none;
+            margin-top: 30px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: {{'block' if display_results=='show' else 'none'}}; /* Display results panel based on display_results variable*/
+        }
+
+        /* ====== */
+        /* CLASS */
+        /* ==== */
+
+        .section1{
+            grid-row: 1; /* Assigns the first section to the first row */
+            /* if want to start on the left side    justify-self: start; */
+        }
+        
+        .our-story {
+            display: none;
+            color:aliceblue;
+        }
+
+        .show-story {
+            display: block;
+            animation: drop-in 3.5s both;
+        }
+
+        .container { /* This container for the analysis */
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.6); /* Background color with transparency */
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .move_ani{
+            animation: by 4s infinite alternate;
+        }
+
+        .jump_ani {
+            animation: jump 5s ease infinite alternate;
+            display: inline-block;
+            margin: 10px;
+        }
+
+        .drop_ani {
+            animation: drop-in 5.5s both infinite alternate;
+        }
+
+        .magnifyingglass {
+            display: inline-block;
+            animation: search infinite linear;
+        }
+
+        .hourglass {
+            position: relative;
+            animation: flip 3s infinite linear;
+            font-size: xx-large;
+            display: none;
+        }
+        
+        .clapping {
+            font-size: large;
+            font-size: 20px;
+            display: inline-block;
+            transform-style: preserve-3d;
+            animation: clap  linear infinite alternate;
+        }
+
+        /* =================== */
+        /* ANIMATION KEY FRAME */
+        /* =================== */
+
+        @keyframes search {
+            0%, 100% { 
+                transform: rotate(0deg) translateY(0);
+            }
+            25% { 
+                transform: rotate(var(--rotation-deg)) translateY(var(--translate-deg));
+            }
+            50% { 
+                transform: rotate(var(--rotation-deg)) translateY(var(--translate-deg));
+            }
+            75% { 
+                transform: rotate(0deg) translateY(0);
+            }
+            
+        }
+
+        @keyframes clap {
+            0%, 100% {
+                transform: rotateY(0);
+            }
+            50% {
+                transform: rotateY(var(--rotation-degree));
+            }
+        }
+
+        @keyframes flip {
+            0%, 100% {
+                transform: rotate(0deg);translateY(0);
+            }
+            25% {
+                transform: rotate(180deg); /* Rotate to 180 degrees at 25% of the animation duration */
+            }
+            50% {
+                transform: rotate(180deg); /* Hold the rotation at 180 degrees until 75% of the animation duration */
+            }
+            75% {
+                transform: rotate(0deg);translateY(0); /* Rotate back to 0 degrees at 75% of the animation duration */
+            }
+        }
+
+        @keyframes jump {
+            0% { transform: translateY(0); }
+            25% { transform: translateY(-10px); color: red;}
+            50% { transform: translateY(0px); color: blue;}
+            75% { transform: translateY(-10px); color: purple;}
+            100% { transform: translateY(0px); color: green;}
+        }
+
+        @keyframes by {
+            0% { transform: translate(0px, 0px); }
+            50% { transform: translate(30px, 0px); }
+            100% { transform: translate(20px, 0px); }
+        }
+
+        @keyframes drop-in {
+        0% { transform: translateY(-400px); animation-timing-function: ease-in; filter: blur(40px); opacity: 0; }
+        38% { transform: translateY(0); animation-timing-function: ease-out; filter: blur(0); opacity: 1; }
+        55% { transform: translateY(-16px); animation-timing-function: ease-in; }
+        72% { transform: translateY(0); animation-timing-function: ease-out; }
+        81% { transform: translateY(-7px); animation-timing-function: ease-in; }
+        90% { transform: translateY(0); animation-timing-function: ease-out; }
+        95% { transform: translateY(-2px); animation-timing-function: ease-in; }
+        100% { transform: translateY(0); animation-timing-function: ease-out; }
+        }
+
+        @keyframes drop-out {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(100px); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Our Story Button -->
+    <div class="section1">
+        <h1 id="ourStory" onclick="toggleStory()">Our Story</h1>
+        <p id="showStory" class="our-story">Our story begins with...</p>
+    </div>
+
+
+    <div class="container">
+        <!-- Header -->
+        <h1 class="" style="margin:-20px;">
+            <p class="magnifyingglass" 
+            style="animation-duration: {{ range(7, 10) | random }}s; --rotation-deg: -{{range(50,120)|random}}deg;--translate-deg: {{range(0, 10)|random}}px;">🔎</p> 
+            Skin Cancer Detection             
+            <p class="magnifyingglass" 
+            style="animation-duration: {{ range(7, 10) | random }}s; --rotation-deg: {{range(50,120)|random}}deg;--translate-deg: {{range(0, 10)|random}}px;">🔍</p>
+        </h1>
+        <!-- Sub header -->
+        <p class="" style="color:#12372A;margin-top: -35px;">
+            <span class="clapping jump_ani" style="animation-duration: {{ range(1,3) | random }}s; --rotation-degree: {{ range(50, 90) | random }}deg;">🙌</span>
+            Welcome to our Skin Cancer detection tool 
+            <span class="clapping" style="animation-duration: {{ range(1, 3) | random }}s; --rotation-degree: {{ range(50, 90) | random }}deg;">🙌</span></p>
+        <!-- Upload promp -->
+        <p>Upload a photo for analysis.</p>
+        <!-- Upload button -->
+        <label for="photoInput">Choose a Photo</label>
+        <input type="file" id="photoInput" accept="image/jpeg, image/png" onchange="handleFileSelect()">
+        <p id="selectedFileName">Selected File: {{file_name}}</p>
+        <img id="selectedImage" src="{{url_for('static',filename='uploads/'+src_photo)}}" alt="Selected Image" width="32" height="32">
+        <p></p>
+        <!-- Run analysis button-->
+        <button id="submitButton" type="submit" onclick="submitForm()">Analyse Photo</button>
+        <!-- Waiting animation-->
+        <P id="hourglass" class="hourglass">⏳</P>
+        <!-- Show results panel -->
+        <div id="results-panel">
+            <h2>Analysis Results</h2>
+            <p id="resultText">{{ prediction | safe }}</p>
+        </div>
+    </div>
+    <!-- Scripts here-->
+    <script src="../static/scripts/handle_upload_file.js"></script>
+</body>
+</html>
