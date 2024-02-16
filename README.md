@@ -21,6 +21,8 @@ Behind the scenes lies the backbone of the skin cancer detection service - the c
 ## The Website in Action
 
 [Skin Cancer Detection](https://skindetector.pythonanywhere.com/)
+
+![Instruction](app/static/images/instruction.gif)
 ## Contributions
 
 **Nicholas Dale** - *Machine Learning Engineer (HOTARU and SPARK creator)*
