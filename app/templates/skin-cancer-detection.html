@@ -15,7 +15,7 @@
             margin: 0;
             padding: 0;
             display: grid;
-            grid-template-rows: auto 1fr;
+            grid-template-rows: auto 5fr;
             place-items: center;
             align-items: center;
             height: 100vh;
@@ -158,8 +158,35 @@
         /* CLASS */
         /* ==== */
 
+        .seperator{
+            display: block;
+            border-style: dashed;
+            border-width: 4px;
+            border-color: whitesmoke;
+        }
+
         .section1{
             grid-row: 1; /* Assigns the first section to the first row */
+            /* if want to start on the left side    justify-self: start; */
+        }
+
+        .section2{
+            grid-row: 2; /* Assigns the first section to the first row */
+            /* if want to start on the left side    justify-self: start; */
+        }
+
+        .section3{
+            grid-row: 3; /* Assigns the first section to the first row */
+            /* if want to start on the left side    justify-self: start; */
+        }
+
+        .section4{
+            grid-row: 4; /* Assigns the first section to the first row */
+            /* if want to start on the left side    justify-self: start; */
+        }
+
+        .section5{
+            grid-row: 5; /* Assigns the first section to the first row */
             /* if want to start on the left side    justify-self: start; */
         }
         
@@ -293,10 +320,11 @@
 <body>
     <!-- Our Story Button -->
     <div class="section1">
-        <h1 id="ourStory" onclick="toggleStory()">Our Story</h1>
+        <h1 id="ourStory" onclick="toggleStory()">HOW TO USE OUR TOOL???</h1>
         <p id="showStory" class="our-story">Our story begins with...</p>
     </div>
 
+    <span class="section2 seperator"></span>
 
     <div class="container">
         <!-- Header -->

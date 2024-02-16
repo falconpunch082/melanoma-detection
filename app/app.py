@@ -94,6 +94,18 @@ def home_page():
 @app.route('/predict/<file_name>',methods=['POST','GET'])
 def predict(file_name):
     raw_data = request.data #For hadnling post request otherwise it will not work
+    colors=[
+        'rgb(255,4,2)',
+        'rgb(255,69,32)',
+        'rgb(255,109,51)',
+        'rgb(255,159,75)',
+        'rgb(255,197,93)',
+        'rgb(175,204,95)',
+        'rgb(124,196,91)',
+        'rgb(73,188,86)',
+        'rgb(22,179,82)'
+    ]
+    text_color=colors[8]
     # Get the link file
     if os.path.exists(uploads_dir):
         # Get a list of all files in the directory
@@ -122,23 +134,18 @@ def predict(file_name):
                 processed_img=prepro(img_path)
                 if processed_img is not None:
                     # Reshape the image for prediction
-                    # processed_image = np.expand_dims(processed_img, axis=0)
                     processed_image = np.expand_dims(processed_img/255, 0)
                     # Make predictions using the loaded model
                     predictions = model.predict(processed_image)
-                    print(predictions)
-                    prediction_value = round(predictions[0][0])
-                    # #Remove the file when done
-                    # if os.path.isfile(img_path):
-                    #     os.remove(img_path)
-
+                    prediction_value = round(100-predictions[0][0]*100)
         if session['file_name']=='No file selected':
             prediction_result = "Please upload a photo of your skin first!!!"
         else:
-            if prediction_value==0:
-                prediction_result = 'Analysis Result: <span style="color: green;">No sign of cancer was detected.</span>'
-            else:
-                prediction_result = 'Analysis Result: <span style="color: red;">Suspicious. Consult a dermatologist.</span>'
+            for i, pred in enumerate(range(90, 0, -10)):
+                if prediction_value >= pred:
+                    text_color=colors[i]
+                    break
+            prediction_result = f'Analysis Result: <span style="color: {text_color};">{prediction_value}% chance that the given photo has cancer.</span>'
     except Exception as e:
         prediction_result = 'Ooops, something went wrong. Please re-upload the file and try again.'
         session['_cleared_once'] = True
@@ -157,4 +164,4 @@ def reset():
     return 'Data reset'
 
 if __name__=="__main__":
-    app.run(debug=False)
+    app.run(debug=True)
