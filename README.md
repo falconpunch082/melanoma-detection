@@ -23,13 +23,13 @@ Behind the scenes lies the backbone of the skin cancer detection service - the c
 [Skin Cancer Detection](https://skindetector.pythonanywhere.com/)
 ## Contributions
 
-Nicholas Dale - Machine Learning Engineer (HOTARU and SPARK creator)
+**Nicholas Dale** - *Machine Learning Engineer (HOTARU and SPARK creator)*
 
-Duc Trieu Pham - Website UI, input, model integration and other frontend/backend
+**Duc Trieu Pham** - *Website UI, input, model integration and other frontend/backend*
 
-Sohaila Nazari - Data Engineer and SPARK collaborator
+**Sohaila Nazari** - *Data Engineer and SPARK collaborator*
 
-Adhidnya - Data Engineer and Researcher
+**Adhidnya** - *Data Engineer and Researcher*
 
 ## Final Repository Structure
 
