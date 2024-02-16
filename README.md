@@ -11,12 +11,12 @@ The website is easy to use for everyone, regardless of technological prowess. Us
 Behind the scenes lies the backbone of the skin cancer detection service - the convolutional neural network HOTARU (Health Observing Technology for Assessing Risks Unveiled) accompanied by the image preprocessing script SPARK (Skin Pattern Analysis and Recognition Kit). SPARK takes in the photo uploaded by the user and modifies it to isolate only the skin spot in question. It then provides the preprocessed image to HOTARU, which goes through every single pixel of the image to determine whether the image shows signs of skin cancer.
 
 ## Technologies Used
-- Tensorflow - https://www.tensorflow.org/api_docs/python/tf
-- OpenCV - https://docs.opencv.org/4.x/index.html
-- Pillow (PIL) - https://pillow.readthedocs.io/en/stable/
-- Numpy - https://numpy.org/doc/
-- Scikit Image - https://scikit-image.org/docs/stable/
-- Flask - https://flask.palletsprojects.com/en/3.0.x/
+- [Tensorflow](https://www.tensorflow.org/api_docs/python/tf)
+- [OpenCV](https://docs.opencv.org/4.x/index.html)
+- [Pillow (PIL)](https://pillow.readthedocs.io/en/stable/)
+- [Numpy](https://numpy.org/doc/)
+- [Scikit Image](https://scikit-image.org/docs/stable/)
+- [Flask](https://flask.palletsprojects.com/en/3.0.x/)
 
 ## The Website in Action
 
