@@ -3,13 +3,16 @@ function handleFileSelect() {
     var selectedFile = fileInput.files[0];
     var selectedFileNameElement = document.getElementById('selectedFileName');
     var selectedImageElement = document.getElementById('selectedImage');
-
+    
     if (selectedFile) {
 
 
         // Display the selected image
         selectedImageElement.src = URL.createObjectURL(selectedFile);
-        selectedImageElement.style.display = 'inline';
+        
+            //Show hourglass
+        var hourglass=document.getElementById('hourglass')
+        hourglass.style.display='block'
 
         // Send the selected file to Flask route
         var formData = new FormData();
@@ -28,6 +31,7 @@ function handleFileSelect() {
                 uploadXhr.onload = function() {
                     if (uploadXhr.status === 200) {
                         console.log('File uploaded successfully');
+                        selectedImageElement.style.display = 'inline';
                         window.location.reload();
                         // Handle response from the Flask route
                     } else {
@@ -60,10 +64,14 @@ button.disabled = true;
 var hourglass=document.getElementById('hourglass')
 hourglass.style.display='block'
 
+    // Get file name
+var selectedFileName = document.querySelector('#selectedFileName').textContent.split(':')[1].trim();
+console.log(selectedFileName)
+
 var formData = new FormData();
 formData.append('text', 'aaaa');
 var xhr = new XMLHttpRequest();
-xhr.open('POST', '/predict', true);
+xhr.open('POST', '/predict/'+selectedFileName, true);
 xhr.onload = function() {
     if (xhr.status === 200) {
         console.log('Prediction request sent successfully');
