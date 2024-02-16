@@ -61,6 +61,6 @@ Pictures not showing skin cancers were handpicked from the following websites:
 
 ## Acknowledgements
 
-We would like to thank [Evan/EdjeElectronics](https://github.com/EdjeElectronics) for making their image data augmentation Python script open-source. It was thanks to them that we were able to create a suitable dataset for HOTARU to learn from. The Python script used is in the repo, but we recommend taking a look at their repo too (https://github.com/EdjeElectronics/Image-Augmentation-Examples-for-Machine-Learning/tree/master).
+We would like to thank [Evan/EdjeElectronics](https://github.com/EdjeElectronics) for making their image data augmentation Python script open-source. It was thanks to them that we were able to create a suitable dataset for HOTARU to learn from. The Python script used is in the repo, but we recommend taking a look at their repo too ([Image-Augmentation-Examples-for-Machine-Learning](https://github.com/EdjeElectronics/Image-Augmentation-Examples-for-Machine-Learning/tree/master)).
 
 We would also like to thank our teaching assistant Hamim and lecturer Saaransh for their guidance and feedback during this project.
