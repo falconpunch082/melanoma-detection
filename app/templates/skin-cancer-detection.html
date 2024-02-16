@@ -15,7 +15,7 @@
             margin: 0;
             padding: 0;
             display: grid;
-            grid-template-rows: auto 5fr;
+            grid-template-rows:auto ;
             place-items: center;
             align-items: center;
             height: 100vh;
@@ -114,14 +114,13 @@
         }
 
         #showStory {
-            margin-left: 60px;     
+            justify-content: center;
+            align-items: center;   
         }
         
         #story-container {
-            width: 97%;
             text-align: justify;
         }
-
 
         #resultText {
             color: #333;
@@ -159,9 +158,11 @@
         /* ==== */
 
         .seperator{
-            display: block;
+            display: flex;
             border-style: dashed;
             border-width: 4px;
+            border-radius: 10px;
+            width: 95%;
             border-color: whitesmoke;
         }
 
@@ -189,6 +190,12 @@
             grid-row: 5; /* Assigns the first section to the first row */
             /* if want to start on the left side    justify-self: start; */
         }
+
+        
+        .section6{
+            grid-row: 6; /* Assigns the first section to the first row */
+            /* if want to start on the left side    justify-self: start; */
+        }
         
         .our-story {
             display: none;
@@ -206,6 +213,7 @@
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            
         }
 
         .move_ani{
@@ -323,40 +331,64 @@
         <h1 id="ourStory" onclick="toggleStory()">HOW TO USE OUR TOOL???</h1>
         <p id="showStory" class="our-story">Our story begins with...</p>
     </div>
+    <p class="section2 seperator"></p>
 
-    <span class="section2 seperator"></span>
-
-    <div class="container">
-        <!-- Header -->
-        <h1 class="" style="margin:-20px;">
-            <p class="magnifyingglass" 
-            style="animation-duration: {{ range(7, 10) | random }}s; --rotation-deg: -{{range(50,120)|random}}deg;--translate-deg: {{range(0, 10)|random}}px;">🔎</p> 
-            Skin Cancer Detection             
-            <p class="magnifyingglass" 
-            style="animation-duration: {{ range(7, 10) | random }}s; --rotation-deg: {{range(50,120)|random}}deg;--translate-deg: {{range(0, 10)|random}}px;">🔍</p>
-        </h1>
-        <!-- Sub header -->
-        <p class="" style="color:#12372A;margin-top: -35px;">
-            <span class="clapping jump_ani" style="animation-duration: {{ range(1,3) | random }}s; --rotation-degree: {{ range(50, 90) | random }}deg;">🙌</span>
-            Welcome to our Skin Cancer detection tool 
-            <span class="clapping" style="animation-duration: {{ range(1, 3) | random }}s; --rotation-degree: {{ range(50, 90) | random }}deg;">🙌</span></p>
-        <!-- Upload promp -->
-        <p>Upload a photo for analysis.</p>
-        <!-- Upload button -->
-        <label for="photoInput">Choose a Photo</label>
-        <input type="file" id="photoInput" accept="image/jpeg, image/png" onchange="handleFileSelect()">
-        <p id="selectedFileName">Selected File: {{file_name}}</p>
-        <img id="selectedImage" src="{{url_for('static',filename='uploads/'+src_photo)}}" alt="Selected Image" width="32" height="32">
-        <p></p>
-        <!-- Run analysis button-->
-        <button id="submitButton" type="submit" onclick="submitForm()">Analyse Photo</button>
-        <!-- Waiting animation-->
-        <P id="hourglass" class="hourglass">⏳</P>
-        <!-- Show results panel -->
-        <div id="results-panel">
-            <h2>Analysis Results</h2>
-            <p id="resultText">{{ prediction | safe }}</p>
+    <div style="display:flex; flex-direction:column; align-items:center;">
+        <div class="section3 container">
+            <!-- Header -->
+            <h1 class="" style="margin:-20px;">
+                <p class="magnifyingglass" 
+                style="animation-duration: {{ range(7, 10) | random }}s; --rotation-deg: -{{range(50,120)|random}}deg;--translate-deg: {{range(0, 10)|random}}px;">🔎</p> 
+                Skin Cancer Detection             
+                <p class="magnifyingglass" 
+                style="animation-duration: {{ range(7, 10) | random }}s; --rotation-deg: {{range(50,120)|random}}deg;--translate-deg: {{range(0, 10)|random}}px;">🔍</p>
+            </h1>
+            <!-- Sub header -->
+            <p class="" style="color:#12372A;margin-top: -35px;">
+                <span class="clapping jump_ani" style="animation-duration: {{ range(1,3) | random }}s; --rotation-degree: {{ range(50, 90) | random }}deg;">🙌</span>
+                Welcome to our Skin Cancer detection tool 
+                <span class="clapping" style="animation-duration: {{ range(1, 3) | random }}s; --rotation-degree: {{ range(50, 90) | random }}deg;">🙌</span></p>
+            <!-- Upload promp -->
+            <p>Upload a photo for analysis.</p>
+            <!-- Upload button -->
+            <label for="photoInput">Choose a Photo</label>
+            <input type="file" id="photoInput" accept="image/jpeg, image/png" onchange="handleFileSelect()">
+            <p id="selectedFileName">Selected File: {{file_name}}</p>
+            <img id="selectedImage" src="{{url_for('static',filename='uploads/'+src_photo)}}" alt="Selected Image" width="32" height="32">
+            <p></p>
+            <!-- Run analysis button-->
+            <button id="submitButton" type="submit" onclick="submitForm()">Analyse Photo</button>
+            <!-- Waiting animation-->
+            <P id="hourglass" class="hourglass">⏳</P>
+            <!-- Show results panel -->
+            <div id="results-panel">
+                <h2>Analysis Results</h2>
+                <p id="resultText">{{ prediction | safe }}</p>
+            </div>
         </div>
+    </div>
+     <!--Disclaimer-->
+    <div class="section" style="width: 40%;align-self: center;text-align: justify;">
+        <h5 style="color:antiquewhite;"><span style="color:coral">Disclaimer:</span> This tool <span style="color:red">is not</span> a medical device, and our model is rudimentary and intended just for research. The accuracy of the results cannot be regarded as definitive.</h5>
+        <h5 style="color:antiquewhite;">For more information, please consult a medical practitioner.</h5>
+    </div>
+
+    <p class="section5 seperator"></p>
+    
+    <div class="section6">
+        <h1 id="colab" style="margin-top: -20px;color:aqua" >COLABORATORS</h1>
+        <div style="display:flex;justify-content:center;color:antiquewhite">
+            <div style="margin-right:60px;">
+                <li>Sohaila</li>
+                <li>Nicholas</li>
+            </div>
+            <div style="margin-right:200px;">
+                <li>Duc Trieu Pham</li>
+                <li>Abhidnya</li>
+            </div>
+        </div>
+
+ 
     </div>
     <!-- Scripts here-->
     <script src="../static/scripts/handle_upload_file.js"></script>
