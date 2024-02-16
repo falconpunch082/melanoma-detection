@@ -52,12 +52,12 @@ Finally, a [progress log](https://github.com/falconpunch082/skin-cancer-detectio
 
 ## Data Sources
 
-Pictures showing skin cancers were accumulated from the website https://api.isic-archive.com/collections/70/. We thank the ISIC organisation for the open-source release of the 2018, 2019 and 2020 Challenge datasets.
+Pictures showing skin cancers were accumulated from [ISIC website](https://api.isic-archive.com/collections/70/). We thank the ISIC organisation for the open-source release of the 2018, 2019 and 2020 Challenge datasets.
 
 Pictures not showing skin cancers were handpicked from the following websites:
--	https://www.kaggle.com/datasets/ahmedxc4/skin-ds 
--	https://www.kaggle.com/datasets/ismailpromus/skin-diseases-image-dataset 
--	https://www.kaggle.com/datasets/subirbiswas19/skin-disease-dataset 
+-	[skin-ds](https://www.kaggle.com/datasets/ahmedxc4/skin-ds)
+-	[skin-diseases-image-dataset](https://www.kaggle.com/datasets/ismailpromus/skin-diseases-image-dataset )
+-	[skin-disease-dataset](https://www.kaggle.com/datasets/subirbiswas19/skin-disease-dataset )
 
 ## Acknowledgements
 
