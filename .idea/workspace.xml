@@ -5,11 +5,88 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1389c724-01a5-4194-843b-64ccd8f008ee" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/contents/our_story.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/contents/our_story.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/uploads/Screenshot 2024-02-09 230152.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/uploads/background.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/skin-cancer-detection.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/skin-cancer-detection.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/skin-cancer-detection.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dashboard/6.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dashboard/B1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dashboard/B2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dashboard/Logo1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dashboard/skin-cancer-detection.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HOTARU Model Creation Progress Log.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/app.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/helper.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/requirements.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/contents/our_story.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/images/background.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/images/frame.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/images/icon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/images/icon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/images/instruction.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/images/step1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/images/step1_incorrect.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/images/step2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/images/step2_incorrect.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/models/prod_6.h5" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/scripts/handle_upload_file.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/uploads/IMG11225.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/skin-cancer-detection.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/augment.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/input.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/input_preprocessing.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/train/events.out.tfevents.1707369704.YOUSORO.18252.0.v2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/train/events.out.tfevents.1707459065.YOUSORO.5684.0.v2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/train/events.out.tfevents.1707459226.YOUSORO.10736.0.v2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/train/events.out.tfevents.1707614963.YOUSORO.8104.0.v2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/train/events.out.tfevents.1707682846.YOUSORO.12724.0.v2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/train/events.out.tfevents.1707711949.YOUSORO.11540.0.v2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/train/events.out.tfevents.1707711971.YOUSORO.11540.1.v2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/train/events.out.tfevents.1707723168.YOUSORO.1288.0.v2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/train/events.out.tfevents.1707860192.YOUSORO.10124.0.v2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/train/events.out.tfevents.1707860277.YOUSORO.11488.0.v2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/train/events.out.tfevents.1707875284.YOUSORO.2352.0.v2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/train/events.out.tfevents.1707877385.YOUSORO.10480.0.v2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/train/events.out.tfevents.1707877730.YOUSORO.2524.0.v2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/train/events.out.tfevents.1707894358.YOUSORO.19568.0.v2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/train/events.out.tfevents.1707901052.YOUSORO.17892.0.v2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/train/events.out.tfevents.1707914965.YOUSORO.20524.0.v2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/validation/events.out.tfevents.1707370639.YOUSORO.18252.1.v2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/validation/events.out.tfevents.1707459635.YOUSORO.10736.1.v2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/validation/events.out.tfevents.1707615570.YOUSORO.8104.1.v2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/validation/events.out.tfevents.1707671998.YOUSORO.10672.1.v2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/validation/events.out.tfevents.1707683286.YOUSORO.12724.1.v2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/validation/events.out.tfevents.1707712059.YOUSORO.11540.2.v2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/validation/events.out.tfevents.1707723314.YOUSORO.1288.1.v2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/validation/events.out.tfevents.1707861023.YOUSORO.11488.1.v2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/validation/events.out.tfevents.1707876109.YOUSORO.2352.1.v2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/validation/events.out.tfevents.1707878939.YOUSORO.2524.1.v2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/validation/events.out.tfevents.1707895608.YOUSORO.19568.1.v2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/validation/events.out.tfevents.1707902259.YOUSORO.17892.1.v2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/validation/events.out.tfevents.1707915450.YOUSORO.20524.1.v2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_testing.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/.gitattributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/v1.0.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/v1.1.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/v1.2.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/v1.3.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notebooks/production1.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notebooks/production2.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notebooks/production3.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notebooks/production4.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notebooks/production5.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notebooks/production6.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notebooks/spark_breakdown.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notebooks/train_val_test_folder-prep.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notebooks/v1.1_further_testing.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/seperating_cancer_images.ipynb" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -153,6 +153,16 @@
             display: {{'block' if display_results=='show' else 'none'}}; /* Display results panel based on display_results variable*/
         }
 
+        #troubleShoot{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            font-size: 40px;
+            text-decoration: underline;
+            color: #9BCF53;
+        }
+
         /* ====== */
         /* CLASS */
         /* ==== */
@@ -172,31 +182,34 @@
         }
 
         .section2{
-            grid-row: 2; /* Assigns the first section to the first row */
-            /* if want to start on the left side    justify-self: start; */
+            grid-row: 2; 
         }
 
         .section3{
-            grid-row: 3; /* Assigns the first section to the first row */
-            /* if want to start on the left side    justify-self: start; */
+            grid-row: 3;
         }
 
         .section4{
-            grid-row: 4; /* Assigns the first section to the first row */
-            /* if want to start on the left side    justify-self: start; */
+            grid-row: 4;
         }
 
         .section5{
-            grid-row: 5; /* Assigns the first section to the first row */
-            /* if want to start on the left side    justify-self: start; */
+            grid-row: 5; 
         }
 
         
         .section6{
-            grid-row: 6; /* Assigns the first section to the first row */
-            /* if want to start on the left side    justify-self: start; */
+            grid-row: 6;
         }
         
+        .section7{
+            grid-row:7;
+        }
+
+        .section8{
+            grid-row:8;
+        }
+
         .our-story {
             display: none;
             color:aliceblue;
@@ -374,15 +387,22 @@
     </div>
 
     <p class="section5 seperator"></p>
-    
-    <div class="section6">
-        <h1 id="colab" style="margin-top: -20px;color:aqua" >COLABORATORS</h1>
+    <!--Troubleshoot-->
+    <div class="section6" style="margin-top: -20px;">
+        <h1 id="troubleShoot" onclick="toggleTrouble()">TROUBLESHOOTING</h1>
+        <p id="showTrouble" class="our-story">Our story begins with...</p>
+    </div>
+
+    <p class="section7 seperator"></p>
+     <!--Colab-->
+    <div class="section8">
+        <h1 id="colab" style="margin-top: -20px;color:aqua" >COLLABORATORS</h1>
         <div style="display:flex;justify-content:center;color:antiquewhite">
             <div style="margin-right:60px;">
                 <li>Sohaila</li>
                 <li>Nicholas</li>
             </div>
-            <div style="margin-right:200px;">
+            <div style="">
                 <li>Duc Trieu Pham</li>
                 <li>Abhidnya</li>
             </div>

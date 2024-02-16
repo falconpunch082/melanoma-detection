@@ -95,15 +95,15 @@ def home_page():
 def predict(file_name):
     raw_data = request.data #For hadnling post request otherwise it will not work
     colors=[
-        'rgb(255,4,2)',
+        'rgb(255,4,2)', #red
         'rgb(255,69,32)',
         'rgb(255,109,51)',
         'rgb(255,159,75)',
-        'rgb(255,197,93)',
+        'rgb(255,197,93)', #orange
         'rgb(175,204,95)',
         'rgb(124,196,91)',
         'rgb(73,188,86)',
-        'rgb(22,179,82)'
+        'rgb(22,179,82)' #green
     ]
     text_color=colors[8]
     # Get the link file
@@ -118,7 +118,6 @@ def predict(file_name):
                 if file_name in file:  # Check if file_name is present in the file name
                     img_path = os.path.join(uploads_dir, file)
                     break  # Exit the loop once the file is found
-    print(img_path)
     try:
         # Check if there is a model exists
         if os.path.exists(model_dir):
@@ -126,9 +125,6 @@ def predict(file_name):
             files = os.listdir(model_dir)
             if len(files)>0:
                 model_path = os.path.join(model_dir, files[0]) #files[0] is model 1 and files[1] is model 2
-                #Using pickle to load model
-                # with open(model_path,'rb') as m:
-                #     model=pickle.load(m)
                     #Using tensorflow to load the model
                 model = load_model(model_path)
                 processed_img=prepro(img_path)
@@ -145,7 +141,11 @@ def predict(file_name):
                 if prediction_value >= pred:
                     text_color=colors[i]
                     break
-            prediction_result = f'Analysis Result: <span style="color: {text_color};">{prediction_value}% chance that the given photo has cancer.</span>'
+            if prediction_value<60:
+                prediction_value=' There is a low'
+            else:
+                prediction_value=str(prediction_value)+'%'
+            prediction_result = f'Analysis Result: <span style="color: {text_color};">{prediction_value} chance that the given photo has cancer.</span>'
     except Exception as e:
         prediction_result = 'Ooops, something went wrong. Please re-upload the file and try again.'
         session['_cleared_once'] = True
