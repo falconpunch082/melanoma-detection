@@ -35,7 +35,6 @@ def home_page():
     src_photo = ' '
     # Check if there is any memory in Flask
     if not session.get('_cleared_once'):
-        session.clear()
         session['_cleared_once'] = True
         file_name='No file selected'
         session['file_name']='No file selected'
@@ -45,14 +44,13 @@ def home_page():
         file_name = session.get('file_name', 'No file selected')
         prediction_result = session.get('prediction', 'No prediction available')
         display_results = session.get('display_results', 'none')
-
         # Get the scr file
-        if session['file_name'] != 'No file selected':
+        if file_name != 'No file selected':
             previous_filename = session['file_name']
             previous_filepath = os.path.join(uploads_dir, previous_filename)
             if os.path.exists(previous_filepath):
                 src_photo = previous_filename
-
+    # Clear memory to make the web look nice
     if session.get('prediction'):
         session.clear()
 
@@ -62,16 +60,16 @@ def home_page():
             return render_template('skin-cancer-detection.html',src_photo=src_photo,
                                    file_name=file_name,prediction=prediction_result, display_results=display_results)
         else:
-            file_name = session.get('file_name', 'No prediction available')
+            file_name = session.get('file_name', 'No file selected')
             return render_template('skin-cancer-detection.html',src_photo=src_photo,
-                                   file_name=file_name,prediction=prediction_result,display_results='none')
+                                   file_name=file_name,prediction=prediction_result,display_results=display_results)
 
     file = request.files['file']
     #Check if the file is empty
     if file.filename == '':
-        file_name = session.get('file_name', 'No prediction available')
+        file_name = session.get('file_name', 'No file selected')
         return render_template('skin-cancer-detection.html',src_photo=src_photo,
-                               file_name=file_name,prediction=prediction_result,display_results='none')
+                               file_name=file_name,prediction=prediction_result,display_results=display_results)
 
     # Remove previous files if it exists
     if os.path.exists(uploads_dir):
@@ -93,47 +91,69 @@ def home_page():
                            file_name=file_name,prediction=prediction_result,display_results=display_results)
 
 # Prediction page
-@app.route('/predict',methods=['POST','GET'])
-def predict():
+@app.route('/predict/<file_name>',methods=['POST','GET'])
+def predict(file_name):
     raw_data = request.data #For hadnling post request otherwise it will not work
+    colors=[
+        'rgb(255,4,2)',
+        'rgb(255,69,32)',
+        'rgb(255,109,51)',
+        'rgb(255,159,75)',
+        'rgb(255,197,93)',
+        'rgb(175,204,95)',
+        'rgb(124,196,91)',
+        'rgb(73,188,86)',
+        'rgb(22,179,82)'
+    ]
+    text_color=colors[8]
     # Get the link file
     if os.path.exists(uploads_dir):
         # Get a list of all files in the directory
         files = os.listdir(uploads_dir)
-        if len(files)>0:
-            img_path = os.path.join(uploads_dir, files[0])
-
-    # Check if there is a model exists
-    if os.path.exists(model_dir):
-        # Get a list of all files in the directory
-        files = os.listdir(model_dir)
-        if len(files)>0:
-            model_path = os.path.join(model_dir, files[0]) #files[0] is model 1 and files[1] is model 2
-            #Using pickle to load model
-            # with open(model_path,'rb') as m:
-            #     model=pickle.load(m)
-                #Using tensorflow to load the model
-            model = load_model(model_path)
-            processed_img=prepro(img_path)
-            if processed_img is not None:
-                # Reshape the image for prediction
-                # processed_image = np.expand_dims(processed_img, axis=0)
-                processed_image = np.expand_dims(processed_img/255, 0)
-                # Make predictions using the loaded model
-                predictions = model.predict(processed_image)
-                print(predictions)
-                prediction_value = round(predictions[0][0])
-
-    if session['file_name']=='No file selected':
-        prediction_result = "Please upload a photo of your skin first!!!"
-    else:
-        if prediction_value==0:
-            prediction_result = 'Analysis Result: <span style="color: green;">No sign of cancer was detected.</span>'
+        if len(files) > 0:
+            img_path = ""  # Initialize img_path outside the loop
+            for file in files:
+                print(file)
+                print(file_name)
+                if file_name in file:  # Check if file_name is present in the file name
+                    img_path = os.path.join(uploads_dir, file)
+                    break  # Exit the loop once the file is found
+    print(img_path)
+    try:
+        # Check if there is a model exists
+        if os.path.exists(model_dir):
+            # Get a list of all files in the directory
+            files = os.listdir(model_dir)
+            if len(files)>0:
+                model_path = os.path.join(model_dir, files[0]) #files[0] is model 1 and files[1] is model 2
+                #Using pickle to load model
+                # with open(model_path,'rb') as m:
+                #     model=pickle.load(m)
+                    #Using tensorflow to load the model
+                model = load_model(model_path)
+                processed_img=prepro(img_path)
+                if processed_img is not None:
+                    # Reshape the image for prediction
+                    processed_image = np.expand_dims(processed_img/255, 0)
+                    # Make predictions using the loaded model
+                    predictions = model.predict(processed_image)
+                    prediction_value = round(100-predictions[0][0]*100)
+        if session['file_name']=='No file selected':
+            prediction_result = "Please upload a photo of your skin first!!!"
         else:
-            prediction_result = 'Analysis Result: <span style="color: red;">Suspicious. Consult a dermatologist.</span>'
+            for i, pred in enumerate(range(90, 0, -10)):
+                if prediction_value >= pred:
+                    text_color=colors[i]
+                    break
+            prediction_result = f'Analysis Result: <span style="color: {text_color};">{prediction_value}% chance that the given photo has cancer.</span>'
+    except Exception as e:
+        prediction_result = 'Ooops, something went wrong. Please re-upload the file and try again.'
+        session['_cleared_once'] = True
+        print(e)
 
     session['prediction'] = prediction_result
-    session['display_results']='show'
+    session['display_results'] = 'show'
+
     return render_template('skin-cancer-detection.html', src_photo='',prediction=prediction_result, display_results='show')
 
 #Clear Flask memory
@@ -144,4 +164,4 @@ def reset():
     return 'Data reset'
 
 if __name__=="__main__":
-    app.run(debug=False)
+    app.run(debug=True)
