@@ -1,52 +1,66 @@
 ![Project Image](app/static/images/icon.png)
 # SKIN CANCER DETECTION
-# Monash University Data Analytics Bootcamp Project 4
+This repository contains material that is part of Project 4 of Monash University Boot Camps' Data Analytics Bootcamp made by Group 2 - [Nicholas Dale](https://github.com/falconpunch082), [Duc Trieu Pham](https://github.com/Lilydales), [Sohaila Nazari](https://github.com/S-haila) and [Abhidnya](https://github.com/Abhidnya05).
 
-## Overview
+## Project Overview
 
-Welcome to the exciting culmination of our journey in the Monash University Data Analytics Bootcamp! In Project 4, Group 2 — comprising Nicholas, Sohaila, Abdi, and Duc — proudly presents an innovative venture at the intersection of data analytics and healthcare.
+The purpose of this project is to create a website that hosts a convolutional neural network model that is purpose-built to detect whether a photo provided by an end-user shows signs of common skin cancers like melanoma, basal cell carcinoma or squamous cell carcinoma.
 
-## Project Objective
+The website is easy to use for everyone, regardless of technological prowess. Users simply click on a button to attach a photo they would like to analyse for skin cancer, and then click another button to see the results. In addition to that, the website also hosts interesting information and infographics about skin cancer that aims to educate people about skin cancer, a cancer that is getting more prevalent as time goes on.
 
-Our mission is clear: empower end-users with a tool that seamlessly integrates machine learning to enhance skin health awareness. In collaboration with Monash University, we've developed a sophisticated solution aimed at detecting potential skin cancer through the analysis of skin spots captured in photographs.
+Behind the scenes lies the backbone of the skin cancer detection service - the convolutional neural network HOTARU (Health Observing Technology for Assessing Risks Unveiled) accompanied by the image preprocessing script SPARK (Skin Pattern Analysis and Recognition Kit). SPARK takes in the photo uploaded by the user and modifies it to isolate only the skin spot in question. It then provides the preprocessed image to HOTARU, which goes through every single pixel of the image to determine whether the image shows signs of skin cancer.
 
-## How It Works
+## Technologies Used
+- Tensorflow - https://www.tensorflow.org/api_docs/python/tf
+- OpenCV - https://docs.opencv.org/4.x/index.html
+- Pillow (PIL) - https://pillow.readthedocs.io/en/stable/
+- Numpy - https://numpy.org/doc/
+- Scikit Image - https://scikit-image.org/docs/stable/
+- Flask - https://flask.palletsprojects.com/en/3.0.x/
 
-Users can simply upload a photo to our dedicated website, where a state-of-the-art machine learning model awaits. This model, meticulously trained and refined, assesses the given skin spot and provides insights into whether it exhibits characteristics associated with skin cancer or not.
+## The Website in Action
 
-## Meet the Team
+[Skin Cancer Detection](https://skindetector.pythonanywhere.com/)
+## Contributions
 
-Let's get acquainted with the brilliant minds behind this project:
+Nicholas Dale - Machine Learning Engineer (HOTARU and SPARK creator)
 
-- **Nicholas**: *Bringing expertise in Model training & Image preprocessing*
-- **Sohaila**: *Contributing with proficiency in Colecting data & Model training*
-- **Abdi**: *Offering insights and skills in Image preprocessing & Frontend application*
-- **Duc**: *Providing valuable contributions through API & Front-end application*
+Duc Trieu Pham - Website UI, input, model integration and other frontend/backend
 
-## Join Us on this Journey
+Sohaila Nazari - Data Engineer and SPARK collaborator
 
-As we delve into the realms of data analytics, machine learning, and healthcare, we invite you to explore our project, engage with the platform, and witness the potential impact it can have on skin health awareness.
+Adhidnya - Data Engineer and Researcher
 
-Thank you for being part of this exciting venture!
+## Final Repository Structure
 
-### References
 
-Collection of data - https://www.kaggle.com/search?q=skin+cancer+in%3Adatasets
-Emoji - https://emojidb.org/
-Animation - https://community.home-assistant.io/t/mushroom-cards-build-a-beautiful-dashboard-easily/388590/3272
+## Launch
 
-# DRAFT
-# skin-cancer-detection
-Monash University Data Analytics Bootcamp Project 4 by Group 2 (Nicholas, Sohaila, Abdi, Duc)
+There is no need for any kind of installation due to the website being hosted in the Internet.
 
-Project objective:
-To allow enduser to provide a photo to a website containing an ML model that detects whether the skinspot shows **malignant or benign** melanoma.
+However, versions of HOTARU and SPARK are available in the repo should one want to load them in a notebook for their own testing purposes.
 
-Collection of data - https://www.kaggle.com/search?q=skin+cancer+in%3Adatasets
-40k total - 50% malignant, 50% benign - Sohalia and Abhi by Sunday
+## Documentation
 
-Image preprocessing - Abhi and Nicholas by 8th
+Every version of HOTARU and SPARK are encased within their respective notebooks. There you will find a breakdown of how they were made, alongside test results. There is a notebook specially made to test v1.1's capabilities with a larger dataset.
 
-Model training - Nicholas and co. by 11th
+There is also a notebook available that shows how SPARK does its magic, one step at a time. In addition, the notebook that is used to separate the raw image data into training, validation and test folders and then process them is available.
 
-Flask application + input + output - Duc by 18th
+Logs are also available, which break down how all models made were created (including ones that did not reach production stage).
+
+Finally, a [progress log](https://github.com/falconpunch082/skin-cancer-detection/blob/nick/HOTARU%20Model%20Creation%20Progress%20Log.docx) is available for a more detailed discussion on how the model was made.
+
+## Data Sources
+
+Pictures showing skin cancers were accumulated from the website https://api.isic-archive.com/collections/70/. We thank the ISIC organisation for the open-source release of the 2018, 2019 and 2020 Challenge datasets.
+
+Pictures not showing skin cancers were handpicked from the following websites:
+-	https://www.kaggle.com/datasets/ahmedxc4/skin-ds 
+-	https://www.kaggle.com/datasets/ismailpromus/skin-diseases-image-dataset 
+-	https://www.kaggle.com/datasets/subirbiswas19/skin-disease-dataset 
+
+## Acknowledgements
+
+We would like to thank [Evan/EdjeElectronics](https://github.com/EdjeElectronics) for making their image data augmentation Python script open-source. It was thanks to them that we were able to create a suitable dataset for HOTARU to learn from. The Python script used is in the repo, but we recommend taking a look at their repo too (https://github.com/EdjeElectronics/Image-Augmentation-Examples-for-Machine-Learning/tree/master).
+
+We would also like to thank our teaching assistant Hamim and lecturer Saaransh for their guidance and feedback during this project.
