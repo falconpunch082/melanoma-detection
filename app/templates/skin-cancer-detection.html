@@ -143,7 +143,6 @@
         }
 
         #results-panel {
-            display: none;
             margin-top: 30px;
             padding: 20px;
             border: 1px solid #ddd;
@@ -223,7 +222,8 @@
 
         .show-story {
             display: block;
-            animation: {%set animations=['drop-in','drop-out','flip','jump','by']%}{{animations|random}} 3.5s both;
+            animation-duration: 3.5s;
+            animation-fill-mode: both;
         }
 
         .container { /* This container for the analysis */
@@ -349,7 +349,7 @@
     <!-- Our Story Button -->
     <div class="section1">
         <h1 id="ourStory" onclick="toggleStory()">HOW TO USE OUR TOOL???</h1>
-        <p id="showStory" class="our-story">Loading...</p>
+        <p id="showStory" class="our-story" style="animation-name: {%set animations=['drop-in','drop-out','flip','jump','by']%}{{ animations|random }};">Loading...</p>
     </div>
     <p class="section2 seperator"></p>
 
@@ -397,7 +397,7 @@
     <!--Troubleshoot-->
     <div class="section6" style="margin-top: -20px;">
         <h1 id="troubleShoot" onclick="toggleTrouble()">TROUBLESHOOTING</h1>
-        <p id="showTrouble" class="our-story">Loading...</p>
+        <p id="showTrouble" class="our-story" style="animation-name: {%set animations=['drop-in','drop-out','flip','jump','by']%}{{ animations|random }};">Loading...</p>
     </div>
 
     <p class="section7 seperator"></p>
@@ -414,8 +414,6 @@
                 <li>Abhidnya</li>
             </div>
         </div>
-
- 
     </div>
     <!-- Scripts here-->
     <script src="../static/scripts/handle_upload_file.js"></script>
