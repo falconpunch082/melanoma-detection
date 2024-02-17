@@ -120,6 +120,8 @@
         
         #story-container {
             text-align: justify;
+            width: 60%;
+            margin: auto;
         }
 
         #resultText {
@@ -373,8 +375,10 @@
             <!-- Upload button -->
             <label for="photoInput">Choose a Photo</label>
             <input type="file" id="photoInput" accept="image/jpeg, image/png" onchange="handleFileSelect()">
+            <!-- Show file name -->
             <p id="selectedFileName">Selected File: {{file_name}}</p>
-            <img id="selectedImage" src="{{url_for('static',filename='uploads/'+src_photo)}}" alt="Selected Image" width="32" height="32">
+            <!-- Show mini photo -->
+            <img id="selectedImage" src="{{url_for('static',filename='uploads/'+src_photo)}}" alt="Selected Image" width="32" height="32" style="border-radius: 10%;">
             <p></p>
             <!-- Run analysis button-->
             <button id="submitButton" type="submit" onclick="submitForm()">Analyse Photo</button>
