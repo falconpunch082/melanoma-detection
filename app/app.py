@@ -139,7 +139,7 @@ def predict(file_name):
                 if prediction_value >= pred:
                     text_color=colors[i]
                     break
-            if prediction_value<60:
+            if prediction_value<50:
                 prediction_value=' There is a low'
             else:
                 prediction_value=str(prediction_value)+'%'
