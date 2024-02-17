@@ -163,6 +163,12 @@
             color: #9BCF53;
         }
 
+        #trouble-container {
+            text-align: justify;
+            width: 60%;
+            margin: auto;
+        }
+
         /* ====== */
         /* CLASS */
         /* ==== */
@@ -217,7 +223,7 @@
 
         .show-story {
             display: block;
-            animation: drop-in 3.5s both;
+            animation: {%set animations=['drop-in','drop-out','flip','jump','by']%}{{animations|random}} 3.5s both;
         }
 
         .container { /* This container for the analysis */
@@ -334,7 +340,8 @@
 
         @keyframes drop-out {
             0% { transform: translateY(0); opacity: 1; }
-            100% { transform: translateY(100px); opacity: 0; }
+            50% { transform: translateY(100px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
         }
     </style>
 </head>
@@ -342,7 +349,7 @@
     <!-- Our Story Button -->
     <div class="section1">
         <h1 id="ourStory" onclick="toggleStory()">HOW TO USE OUR TOOL???</h1>
-        <p id="showStory" class="our-story">Our story begins with...</p>
+        <p id="showStory" class="our-story">Loading...</p>
     </div>
     <p class="section2 seperator"></p>
 
@@ -390,7 +397,7 @@
     <!--Troubleshoot-->
     <div class="section6" style="margin-top: -20px;">
         <h1 id="troubleShoot" onclick="toggleTrouble()">TROUBLESHOOTING</h1>
-        <p id="showTrouble" class="our-story">Our story begins with...</p>
+        <p id="showTrouble" class="our-story">Loading...</p>
     </div>
 
     <p class="section7 seperator"></p>

@@ -10,8 +10,6 @@ from helper import *
 # Create app
 app=Flask(__name__)
 app.secret_key = 'proj4ct4Gr0up2'
-# Load model
-# model=pickle.load(open('models/model.pkl','rb'))
 
 ##########################
 ###         APP        ###

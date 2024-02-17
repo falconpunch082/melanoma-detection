@@ -89,9 +89,14 @@ xhr.send(formData);
 }
 
 // Show/Hide OUr story
-function toggleStory() {
+function toggleStory(toggle=true) {
     var storySection = document.getElementById('showStory');
-    storySection.classList.toggle('show-story');
+    if(toggle){
+        storySection.classList.toggle('show-story');
+    } else if(storySection.classList.contains('show-story')===false){
+        storySection.classList.toggle('show-story');
+    };
+    
 
     // Check if the toggle is on
     if (storySection.classList.contains('show-story')) {
@@ -102,7 +107,7 @@ function toggleStory() {
         xhr.onload = function () {
             if (xhr.status === 200) {
                 // Insert the fetched content into the story container
-                document.getElementById('showStory').innerHTML = xhr.responseText;
+                storySection .innerHTML = xhr.responseText;
             } else {
                 console.error('Failed to fetch story.html');
             }
@@ -115,6 +120,37 @@ function toggleStory() {
         xhr.send();
     } else {
         // Toggle is off, remove the story content from the container
-        document.getElementById('showStory').innerHTML = '';
+        storySection.innerHTML = '';
+    }
+}
+
+// Show/Hide Troubleshooting
+function toggleTrouble() {
+    var storySection = document.getElementById('showTrouble');
+    storySection.classList.toggle('show-story');
+
+    // Check if the toggle is on
+    if (storySection.classList.contains('show-story')) {
+        // Perform an AJAX request to fetch the story.html content
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', '/static/contents/trouble.html', true); // path to the story
+
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                // Insert the fetched content into the story container
+                storySection.innerHTML = xhr.responseText;
+            } else {
+                console.error('Failed to fetch trouble.html');
+            }
+        };
+
+        xhr.onerror = function () {
+            console.error('Failed to fetch trouble.html');
+        };
+
+        xhr.send();
+    } else {
+        // Toggle is off, remove the story content from the container
+        storySection .innerHTML = '';
     }
 }
