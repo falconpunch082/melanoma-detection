@@ -1,0 +1,7 @@
+This text file provides links to raw images used to train HOTARU.
+
+Non-skin-cancer photos from several Kaggle datasets - https://drive.google.com/file/d/107QHLRX6tji2nuXwluHQJ_DkobB5IB8Z/view?usp=drive_link
+
+Skin-cancer photos from ISIC challenge datasets -
+https://drive.google.com/file/d/17679WRyCSOB2nC-65W-aGQTCTuuyC5iZ/view?usp=drive_link
+

@@ -1,5 +1,7 @@
 ![Project Image](app/static/images/icon.png)
+
 # SKIN CANCER DETECTION
+
 This repository contains material that is part of Project 4 of Monash University Boot Camps' Data Analytics Bootcamp made by Group 2 - [Nicholas Dale](https://github.com/falconpunch082), [Duc Trieu Pham](https://github.com/Lilydales), [Sohaila Nazari](https://github.com/S-haila) and [Abhidnya Thakur](https://github.com/Abhidnya05).
 
 ## Project Overview
@@ -20,9 +22,10 @@ Behind the scenes lies the backbone of the skin cancer detection service - the c
 
 ## The Website in Action
 
-[Skin Cancer Detection](https://skindetector.pythonanywhere.com/)
-
 ![Instruction](app/static/images/instruction.gif)
+
+Feel free to check out the website yourself with the link over [here](https://skindetector.pythonanywhere.com/)!
+
 ## Contributions
 
 **Nicholas Dale** - *Machine Learning Engineer (HOTARU and SPARK creator)*
@@ -31,16 +34,28 @@ Behind the scenes lies the backbone of the skin cancer detection service - the c
 
 **Sohaila Nazari** - *Data Engineer and SPARK collaborator*
 
-**Adhidnya** - *Data Engineer and Researcher*
+**Adhidnya Thakur** - *Data Engineer and Researcher*
 
 ## Final Repository Structure
 
-
-## Launch
-
-There is no need for any kind of installation due to the website being hosted in the Internet.
-
-However, versions of HOTARU and SPARK are available in the repo should one want to load them in a notebook for their own testing purposes.
+```
+├── README.md
+├── .gitignore
+├── HOTARU Model Creation Progress Log.docx
+├── '.idea' folder
+    ├── 'inspectionProfiles' folder
+├── 'app' Folder
+    ├── '__pycache__' folder
+    ├── 'static' folder
+    ├── 'templates' folder
+├── 'Dashboard' folder
+├── 'data' folder
+    ├── 'collection' folder
+    └── 'preprocessing' folder
+├── 'logs' folder
+├── 'models' folder
+└── 'notebooks' folder
+```
 
 ## Documentation
 
@@ -48,7 +63,7 @@ Every version of HOTARU and SPARK are encased within their respective notebooks.
 
 There is also a notebook available that shows how SPARK does its magic, one step at a time. In addition, the notebook that is used to separate the raw image data into training, validation and test folders and then process them is available.
 
-Logs are also available, which break down how all models made were created (including ones that did not reach production stage).
+Logs made with TensorFlow's callback feature are also available, which break down how all models made were trained (including ones that did not reach production stage).
 
 Finally, a [progress log](https://github.com/falconpunch082/skin-cancer-detection/blob/nick/HOTARU%20Model%20Creation%20Progress%20Log.docx) is available for a more detailed discussion on how the model was made.
 
@@ -60,6 +75,12 @@ Pictures not showing skin cancers were handpicked from the following websites:
 -	[skin-ds](https://www.kaggle.com/datasets/ahmedxc4/skin-ds)
 -	[skin-diseases-image-dataset](https://www.kaggle.com/datasets/ismailpromus/skin-diseases-image-dataset )
 -	[skin-disease-dataset](https://www.kaggle.com/datasets/subirbiswas19/skin-disease-dataset )
+
+## Launch
+
+There is no need for any kind of installation due to the website being hosted in the Internet.
+
+However, versions of HOTARU and SPARK are available in the repo should one want to load them in a notebook for their own testing purposes.
 
 ## Acknowledgements
 
