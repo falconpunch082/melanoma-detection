@@ -43,11 +43,11 @@ Feel free to check out the website yourself with the link over [here](https://sk
 ├── .gitignore
 ├── HOTARU Model Creation Progress Log.docx
 ├── '.idea' folder
-    ├── 'inspectionProfiles' folder
+    └── 'inspectionProfiles' folder
 ├── 'app' Folder
     ├── '__pycache__' folder
     ├── 'static' folder
-    ├── 'templates' folder
+    └── 'templates' folder
 ├── 'Dashboard' folder
 ├── 'data' folder
     ├── 'collection' folder
