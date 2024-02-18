@@ -1,7 +1,5 @@
 ![Project Image](app/static/images/icon.png)
 
-# SKIN CANCER DETECTION
-
 This repository contains material that is part of Project 4 of Monash University Boot Camps' Data Analytics Bootcamp made by Group 2 - [Nicholas Dale](https://github.com/falconpunch082), [Duc Trieu Pham](https://github.com/Lilydales), [Sohaila Nazari](https://github.com/S-haila) and [Abhidnya Thakur](https://github.com/Abhidnya05).
 
 ## Project Overview
