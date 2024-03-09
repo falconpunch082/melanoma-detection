@@ -89,6 +89,12 @@
             margin-bottom: 15px;
         }
 
+        input[type="radio"],
+        input[type="checkbox"] {
+            transform: scale(1.5); /* Adjust the scale value as needed */
+            margin-right: 5px; /* Add some space between the input and label */
+        }
+
         /* === */
         /* ID */
         /* = */
@@ -227,6 +233,12 @@
             animation-duration: 3.5s;
             animation-fill-mode: both;
         }
+        
+        .questionnaire {
+        display: none;
+        margin-top: 20px;
+        color:#74E291
+        }
 
         .container { /* This container for the analysis */
             text-align: center;
@@ -356,7 +368,11 @@
     <p class="section2 seperator"></p>
 
     <div style="display:flex; flex-direction:column; align-items:center;">
-        <div class="section3 container">
+        <div>
+        <button id="questionButton" type="submit" onclick="startQuestionnaire()">TAKE QUESTIONNAIRS</button>
+        <p id="questionContainer"></p>
+        </div>
+        <div id="application" class="section3 container">
             <!-- Header -->
             <h1 class="" style="margin:-20px;">
                 <p class="magnifyingglass" 
@@ -421,5 +437,6 @@
     </div>
     <!-- Scripts here-->
     <script src="../static/scripts/handle_upload_file.js"></script>
-</body>
+    <script src="../static/scripts/handle_questionair.js"></script>
+    
 </html>
